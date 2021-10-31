@@ -3,7 +3,6 @@ import {Required, Status, Description, Summary} from "@tsed/schema";
 import {NotFound} from "@tsed/exceptions";
 import {Calendar} from "../../models/calendars/Calendar";
 import {CalendarsService} from "../../services/calendars/CalendarsService";
-import {EventsCtrl} from "../events/EventsCtrl";
 
 /**
  * Add @Controller annotation to declare your class as Router controller.
@@ -15,7 +14,6 @@ import {EventsCtrl} from "../events/EventsCtrl";
  */
 @Controller({
   path: "/calendars",
-  children: [EventsCtrl]
 })
 export class CalendarsCtrl {
   constructor(private calendarsService: CalendarsService) {

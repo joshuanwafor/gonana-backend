@@ -1,0 +1,60 @@
+<%- include('template/header'); -%>
+
+    <div style="background-color: bisque;">
+        <div class="container-fluid">
+            <div class="border-bottom d-flex align-items-center" style="min-height: 70vh;">
+                <div class="bg-ligh" style="flex: 1;">
+                    <div class="px-0 py-5 mb-0">
+                        <h1 class="fw-bold mb-3">Find Research Projects</h1>
+                        <div class="col-lg-6">
+                            <div class="d-flex">
+                                <input class="flex-grow-1 form-control form-control-lg" />
+                                <div class="px-2"></div>
+                                <button class="btn btn-primary btn-lg">Search</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container-fluid my-5">
+        <div class="row">
+          <% [1,2,3,4,5,6].forEach(function(user){ %>
+            <div class="col-12 col-md-4 my-2">
+            <%- include('components/taxonomy-card', {user: user}); %>
+             </div>
+          <% }); %>
+    
+        </div>
+      </div>
+
+    <!-- Default Site ads -->
+    <div class="my-5">
+        <div class="py-5">
+            <div class="container-fluid">
+                <div class="row align-items-md-stretch">
+                    <div class="col-md-6 my-2">
+                        <div class="h-100 p-5 text-white bg-dark rounded-3">
+                            <h2>Sell projects</h2>
+                            <p>Getting and finishing up a final year project has never been easy, earn some money as you
+                                help others with finished final year projects. We've got you.</p>
+                            <button class="btn btn-outline-light" type="button">Get started</button>
+                        </div>
+                    </div>
+                    <div class="col-md-6 my-2">
+                        <div class="h-100 p-5 bg-light border rounded-3">
+                            <h2>Find project resources</h2>
+                            <p>Need not worry about an idea to work on, find ideas to fully completed projects out
+                                finalyearcruz, we've got you covered all round... </p>
+                            <button class="btn btn-outline-secondary" type="button">Explore</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <%- include('template/footer'); -%>

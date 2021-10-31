@@ -25,7 +25,23 @@ import * as methodOverride from "method-override";
   swagger: [{
     path: "/api-docs"
   }],
-  debug: false
+  debug: false,
+  viewsDir: `${__dirname}/views`,
+  views: {
+    root: `${__dirname}/views`,
+    viewEngine: "ejs",
+    extensions: { // optional
+      "ejs": "ejs",
+      "hbs": "handlebars"
+    },
+    options: {
+      ejs: {} // global options for ejs engine. See official engine documentation for more details.
+    }
+  },
+  "mount": {
+    "/rest": "${rootDir}/controllers/**/*.ts",
+    "/": "${rootDir}/public-controllers/*.ts",
+  },
 })
 export class Server {
   @Inject()
