@@ -23,7 +23,7 @@ export class ProjectCtrl {
 
     }
 
-    @View("index.ejs")
+    @View("project.ejs")
     @Get("/:project")
     getProject() {
 
