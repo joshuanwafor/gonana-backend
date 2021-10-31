@@ -9,6 +9,7 @@ import * as compress from "compression";
 import * as cookieParser from "cookie-parser";
 import * as methodOverride from "method-override";
 
+console.log(__dirname);
 @Configuration({
   rootDir: __dirname,
   acceptMimes: ["application/json"],
