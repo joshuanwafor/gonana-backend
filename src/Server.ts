@@ -27,9 +27,9 @@ console.log(__dirname);
     path: "/api-docs"
   }],
   debug: false,
-  viewsDir: `${__dirname}/views`,
+  viewsDir: `${__dirname}/../views`,
   views: {
-    root: `${__dirname}/views`,
+    root: `${__dirname}/../views`,
     viewEngine: "ejs",
     extensions: { // optional
       "ejs": "ejs",
