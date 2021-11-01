@@ -4,7 +4,7 @@ import {Model, Ref} from "@tsed/mongoose";
 
 
 @Model()
-export class ProductModel {
+export class TaxonomyModel {
   @Name("id")
   _id: string;
 
@@ -25,19 +25,12 @@ export class ProductModel {
   description: string;
 
   @Property()
-  @Description("Chapter one MD")
-  md_chapter_1: string;
+  parent_id: string;
 
   @Property()
-  @Description("Chapter one MD")
-  product_url: string;
+  photo_url: string;
 
   @Property()
-  @Description("Project status")
-  status: string;
-
-  @Property()
-  @Description("Project status")
-  categories: string[];
+  type: string;
 
 }
