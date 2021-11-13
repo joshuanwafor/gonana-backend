@@ -39,5 +39,4 @@ export class ProductModel {
   @Property()
   @Description("Project status")
   categories: string[];
-
 }
