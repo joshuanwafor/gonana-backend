@@ -55,7 +55,6 @@
     "@types/express": "^4.17.13",
     "@types/http-proxy": "^1.17.1",
     "@types/mocha": "8.2.2",
-    "@types/mongoose": "5.7.36",
     "@types/node": "14.14.34",
     "@types/request-promise": "^4.1.42",
     "@types/sinon": "9.0.8",
