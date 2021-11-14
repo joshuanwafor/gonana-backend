@@ -22,4 +22,16 @@ export class EventsCtrl {
     get() {
 
     }
+
+    @View("taxonomies.ejs")
+    @Get("/taxonomies")
+    getCategories() {
+
+    }
+
+    @View("taxonomy.ejs")
+    @Get("/taxonomies/:taxonomy")
+    getCategory() {
+
+    }
 }

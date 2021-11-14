@@ -5,7 +5,8 @@
             <div class="border-bottom d-flex align-items-center">
                 <div class="bg-ligh" style="flex: 1;">
                     <div class="px-0 py-5 mb-0 text-center">
-                        <h1 class="fw-bold mb-3">Find Projects</h1>
+                        <h1 class="fw-bold mb-3">Page title goes here</h1>
+                        <p>Page description goes here</p>
                     </div>
                 </div>
             </div>
@@ -14,42 +15,13 @@
 
     <div class="container my-5">
         <div class="row">
-            <div class="col-12 col-md-12">
-                <div class="row border rounded">
-                    <div class="col-12 d-flex justify-content-between border-bottom py-4 bg-light">
-                        <div class="btn-group">
-                            <a href="#" class="btn btn-secondary active" aria-current="page">Undergraduates</a>
-                            <a href="#" class="btn btn-secondary">Masters</a>
-                            <a href="#" class="btn btn-secondary">Poly</a>
-                        </div>
-
+            <div class="col-12 col-md-8  my-3">
+                <div class="border rounded">
+                    <div class="d-flex align-items-center justify-content-between border-bottom p-3 bg-light">
                         <div>
-                            <span class="dropdown">
-                                <a class="btn  dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                    Programme
-                                </a>
-
-                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                    <li><a class="dropdown-item" href="#">Action</a></li>
-                                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                </ul>
-                            </span>
-
-
-                            <span class="dropdown">
-                                <a class="btn  dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                    Date Range
-                                </a>
-
-                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                    <li><a class="dropdown-item" href="#">Action</a></li>
-                                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                </ul>
-                            </span>
+                            Projects
+                        </div>
+                        <div>
                         </div>
                     </div>
 
@@ -60,6 +32,22 @@
                         </div>
                         <% }); %>
 
+                </div>
+            </div>
+            <div class="col-12 col-md-4 my-3">
+                <div class="border rounded">
+                    <div class="p-3">
+                        Top categories 
+                    </div>
+                    <div class="border-top">
+                        <% [1,2,3,4,5,6].forEach(function(user){ %>
+                            <div class="col-12 col-md-12 my-2 mb-0 border-bottom">
+                               <div class="p-3 py-2">
+                                   Category name goes here
+                               </div>
+                            </div>
+                            <% }); %>
+                    </div> 
                 </div>
             </div>
         </div>
@@ -107,5 +95,8 @@
             </div>
         </div>
     </div>
+
+
+   
 
     <%- include('template/footer'); -%>
