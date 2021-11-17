@@ -1,6 +1,6 @@
-import {GlobalAcceptMimesMiddleware} from "@tsed/common";
-import {PlatformApplication} from "@tsed/common";
-import {Configuration, Inject} from "@tsed/di";
+import { GlobalAcceptMimesMiddleware } from "@tsed/common";
+import { PlatformApplication } from "@tsed/common";
+import { Configuration, Inject } from "@tsed/di";
 import "@tsed/mongoose";
 import "@tsed/platform-express";
 import "@tsed/swagger";
@@ -8,6 +8,7 @@ import * as bodyParser from "body-parser";
 import * as compress from "compression";
 import * as cookieParser from "cookie-parser";
 import * as methodOverride from "method-override";
+import * as  cors from "cors"
 
 console.log(__dirname);
 @Configuration({
@@ -54,11 +55,13 @@ export class Server {
       .use(cookieParser())
       .use(compress({}))
       .use(methodOverride())
-      .use(bodyParser.json())
+      .use(bodyParser.json()).use(cors())
       .use(bodyParser.urlencoded({
         extended: true
       }));
 
+
     return null;
   }
 }
+

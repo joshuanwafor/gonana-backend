@@ -3,18 +3,20 @@ import {Required, Name, Description, Property} from "@tsed/schema";
 import {Model, Ref} from "@tsed/mongoose";
 
 
-@Model()
+
+@Model({ schemaOptions: { timestamps: true, collection: 'taxonomies', }, collection: 'taxonomies', })
 export class TaxonomyModel {
   @Name("id")
   _id: string;
 
+  @Name("created_at")
   @Property()
-  @Description("Creation's date")
-  created_at: Date = new Date();
+  created_at: any;
 
+  @Name("updated_at")
   @Property()
-  @Description("Last modification date")
-  updated_at: Date = new Date();
+  updated_at: any;
+
 
   @Name("name")
   @Description("The name of the event")

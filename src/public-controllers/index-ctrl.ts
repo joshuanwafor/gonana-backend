@@ -28,10 +28,4 @@ export class EventsCtrl {
     getCategories() {
 
     }
-
-    @View("taxonomy.ejs")
-    @Get("/taxonomies/:taxonomy")
-    getCategory() {
-
-    }
 }

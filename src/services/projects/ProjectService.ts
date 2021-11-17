@@ -1,13 +1,13 @@
 import {Inject, Service} from "@tsed/common";
 import {MongooseModel} from "@tsed/mongoose";
 import {$log} from "@tsed/logger";
-import {ProductModel} from "../../models/Project";
+import {ProjectModel} from "../../models/Project";
 
 
 @Service()
 export class ProjectService {
-  @Inject(ProductModel)
-  private model: MongooseModel<ProductModel>;
+  @Inject(ProjectModel)
+  private model: MongooseModel<ProjectModel>;
 
   $onInit() {
     this.reload();
@@ -27,7 +27,7 @@ export class ProjectService {
    * @param id
    * @returns {undefined|ProductModel}
    */
-  async find(id: string): Promise<ProductModel> {
+  async find(id: string): Promise<ProjectModel> {
     $log.debug("Search an item from ID", id);
     const item = await this.model.findById(id).exec();
 
@@ -40,10 +40,10 @@ export class ProjectService {
    * @param item
    * @returns {Promise<TResult|TResult2|ProductModel>}
    */
-  async save(item: ProductModel): Promise<ProductModel> {
+  async save(item: ProjectModel): Promise<ProjectModel> {
     $log.debug({message: "Validate item", item});
 
-    const model = new this.model(ProductModel);
+    const model = new this.model(item);
     $log.debug({message: "Save item", item});
     await model.updateOne(item, {upsert: true});
 
@@ -56,7 +56,7 @@ export class ProjectService {
    *
    * @returns {ProductModel[]}
    */
-  async query(options = {}): Promise<ProductModel[]> {
+  async query(options = {}): Promise<ProjectModel[]> {
     return this.model.find(options).exec();
   }
 
@@ -65,7 +65,7 @@ export class ProjectService {
    * @param id
    * @returns {Promise<ProductModel>}
    */
-  async remove(id: string): Promise<ProductModel> {
+  async remove(id: string): Promise<ProjectModel> {
     return await this.model.findById(id).remove().exec();
   }
 }

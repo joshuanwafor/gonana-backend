@@ -12,25 +12,29 @@
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
  
     <title>Hello, world!</title>
+    <style>
+        .navbar-toggler-icon{color: black;}
+        button:focus{outline: none !important;}
+    </style>
 </head>
 
 <body style="padding-top: 3.5rem;">
-    <nav class="navbar fixed-top navbar-expand-lg shadow shadow-sm bg-white"
-        style="border-top: 3px solid rgb(245, 102, 19); z-index: 100000000000000000;">
+    <nav class="navbar fixed-top navbar-expand-lg shadow shadow-sm navbar-light bg-white "
+        style="border-top: 3px solid rgb(245, 102, 19); z-index: 10000;">
         <div class="container">
-            <a class="navbar-brand" href="/">Navbar</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+            <a class="navbar-brand text-dark" href="/">Final Y.C</a>
+            <span class="navbar-toggler border-0" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
-            </button>
+        </span>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
                         <a class="nav-link active text-dark" aria-current="page" href="/projects">All projects</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link  text-dark" href="#">By institutions</a>
+                        <a class="nav-link  text-dark" href="#">Programmes</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle  text-dark" href="#" id="navbarDropdown" role="button"

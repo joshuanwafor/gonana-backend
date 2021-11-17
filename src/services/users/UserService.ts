@@ -34,10 +34,6 @@ export class UserService {
   async save(user: User): Promise<User> {
     $log.debug({ message: "Validate user", user });
 
-    // const m = new CModel(calendar);
-    // console.log(m);
-    // await m.update(calendar, {upsert: true});
-
     const model = new this.User(user);
     $log.debug({ message: "Save user", model });
     await model.updateOne(model, { upsert: true });

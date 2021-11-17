@@ -5,7 +5,6 @@ const SEC_KEY = "Bearer sk_live_b5592eabd7d3ca30737be9859586999fe6d76231"
 
 export class PaystackActions {
 
-
     addSubaccount = async (info: any): Promise<any> => {
 
         let response = await axios({

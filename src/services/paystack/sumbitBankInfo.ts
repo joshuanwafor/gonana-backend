@@ -6,7 +6,7 @@ import { User } from '../../models/users/User';
 import { Required } from "@tsed/schema";
 import axios from "axios";
 import { PaystackActions } from './paystackAPIActions';
-import { ProductModel } from '../../models/Project';
+import { ProjectModel } from '../../models/Project';
 const SEC_KEY = "Bearer sk_live_b5592eabd7d3ca30737be9859586999fe6d76231"
 
 let paystackActions = new PaystackActions;
@@ -15,10 +15,6 @@ let paystackActions = new PaystackActions;
 export class PaystackService {
     @Inject(User)
     private User: MongooseModel<User>;
-
-    @Inject(ProductModel)
-    private ProductModel: MongooseModel<ProductModel>;
-
    
     addUserSubaccount = async (info: CreateAccountForm, userID: string): Promise<User> => {
         if (process.env.NODE_ENV !== "production") {
