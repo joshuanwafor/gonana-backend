@@ -5,8 +5,8 @@
             <div class="border-bottom d-flex align-items-center">
                 <div class="bg-ligh" style="flex: 1;">
                     <div class="px-0 py-5 mb-0 text-center">
-                        <h1 class="fw-bold mb-3">All Research works unfiltered</h1>
-                        <p>Streamline search by selecting field</p>
+                        <h1 class="fw-bold mb-3"><%- taxonomy.name %> </h1>
+                        <p>Fina research works under <%- taxonomy.name %>  here</p>
                     </div>
                 </div>
             </div>
@@ -38,10 +38,10 @@
                         Top categories
                     </div>
                     <div class="border-top">
-                        <% taxonomies.forEach(function(user){ %>
+                        <% taxonomies.forEach(function(item){ %>
                             <div class="col-12 col-md-12 my-2 mb-0 border-bottom">
-                                <a href="/" class="p-3 py-2">
-                                    Category name goes here
+                                <a href="/taxonomies/<%- item._id %> " class="p-3 py-2 text-decoration-none" >
+                                    <%- item.name %> 
                                 </a>
                             </div>
                             <% }); %>
@@ -50,21 +50,6 @@
             </div>
         </div>
 
-
-        <!-- Pagination -->
-        <nav aria-label="Page navigation example " class="my-5">
-            <ul class="pagination justify-content-center">
-                <li class="page-item disabled">
-                    <a class="page-link">Previous</a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item">
-                    <a class="page-link" href="#">Next</a>
-                </li>
-            </ul>
-        </nav>
 
     </div>
 

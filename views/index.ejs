@@ -35,7 +35,7 @@
 
     <div class="container my-5">
         <div class="row">
-            <% taxonomies.forEach(function(item){ %>
+            <% taxonomies.slice(0,9).forEach(function(item){ %>
                 <div class="col-12 col-md-4 my-2">
                     <%- include('components/taxonomy-card', {taxonomy: item}); %>
                 </div>

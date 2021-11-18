@@ -33,6 +33,17 @@ export class EventsCtrl {
         return { ...resources }
     }
 
+    @View("taxonomy.ejs")
+    @Get("/taxonomies/:taxID")
+    async getCategory(@PathParams("taxID") taxID: string) {
+        let resources = await this.getPageResouces();
+        let taxonomy= await this.tcontroler.find(taxID);
+        let projects = await this.pcontroler.query({});
+
+        return {...resources, projects: projects, taxonomy:taxonomy }
+    }
+
+
 
     async getPageResouces(): Promise<{ taxonomies: any }> {
         let items = await this.tcontroler.query({});
