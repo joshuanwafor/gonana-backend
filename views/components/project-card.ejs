@@ -1,13 +1,26 @@
-<div class="card border-0" style="">
+<a class="card block border-0 text-decoration-none text-body" style="" href="/projects/<%- project._id %>">
     <div class="card-body ">
-        <h5 class="card-title ">Project title goes here</h5>
-        <h6 class="card-subtitle mb-2 text-muted">Some quick Title and make up the bulk of the card's
-            content.</h6>
-        <p class="card-text"></p>
+        <h5 class="card-title text-body">
+            <%- project.title %>
+        </h5>
+        <h6 class="card-subtitle mb-2 text-muted ">
+            <%- project.description %> --
+        </h6>
 
+        <div class="text-muted d-flex">
+            <span>
+                <i class="bi bi-tags"></i>
+                Tags
+            </span>
+            <span>
+                <i class="bi bi-file-earmark"></i>
+                0
+            </span>
+            <span>
+                <i class="bi bi-cash-coin"></i>
+                Yes
+            </span>
 
-        <div>
-            <i class="bi-github" role="img" aria-label="GitHub"></i>
         </div>
     </div>
-</div>
+</a>

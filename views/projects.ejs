@@ -25,29 +25,27 @@
                         </div>
                     </div>
 
-
-                    <% [1,2,3,4,5,6].forEach(function(user){ %>
+                    <% projects.forEach(function(item){ %>
                         <div class="col-12 col-md-12 my-2 mb-0 border-bottom">
-                            <%- include('components/project-card', {user: user}); %>
+                            <%- include('components/project-card', {project: item}); %>
                         </div>
                         <% }); %>
-
                 </div>
             </div>
             <div class="col-12 col-md-4 my-3">
                 <div class="border rounded">
                     <div class="p-3">
-                        Top categories 
+                        Top categories
                     </div>
                     <div class="border-top">
-                        <% [1,2,3,4,5,6].forEach(function(user){ %>
+                        <% taxonomies.forEach(function(user){ %>
                             <div class="col-12 col-md-12 my-2 mb-0 border-bottom">
-                               <a href="/" class="p-3 py-2">
-                                   Category name goes here
-                               </a>
+                                <a href="/" class="p-3 py-2">
+                                    Category name goes here
+                                </a>
                             </div>
                             <% }); %>
-                    </div> 
+                    </div>
                 </div>
             </div>
         </div>
@@ -97,6 +95,6 @@
     </div>
 
 
-   
+
 
     <%- include('template/footer'); -%>
