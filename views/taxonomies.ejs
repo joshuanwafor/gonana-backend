@@ -5,8 +5,8 @@
             <div class="border-bottom d-flex align-items-center">
                 <div class="bg-ligh" style="flex: 1;">
                     <div class="px-0 py-5 mb-0 text-center">
-                        <h1 class="fw-bold mb-3">Programmes </h1>
-                        <p>Page description goes here</p>
+                        <h1 class="fw-bold mb-3">All Departments</h1>
+                        <p>Projects are grouped based on departments and other criteria <br> Find your departmen to streamline search results </p>
                     </div>
                 </div>
             </div>
@@ -15,9 +15,9 @@
 
     <div class="container my-5">
         <div class="row">
-            <% taxonomies.forEach(function(user){ %>
+            <% taxonomies.forEach(function(item){ %>
                 <div class="col-12 col-md-4 my-2">
-                    <%- include('components/taxonomy-card', {user: user}); %>
+                    <%- include('components/taxonomy-card', {taxonomy: item}); %>
                 </div>
                 <% }); %>
         </div>
