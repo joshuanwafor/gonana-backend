@@ -13,9 +13,9 @@ const paystackService = new PaystackService;
 const paystackActions = new PaystackActions;
 
 @Service()
-class TransactionService {
+export class TransactionService {
 
-    @Inject(ProjectModel)
+    @Inject(TransactionModel)
     private model: MongooseModel<TransactionModel>;
 
     @Inject(UserService)
@@ -59,5 +59,11 @@ class TransactionService {
 
     verifyTransaction = () => {
 
+    }
+
+    getUserTransactions =async (user_id: string)=>{
+        return await this.model.find({
+            merchant_id: user_id
+        }).exec()
     }
 }

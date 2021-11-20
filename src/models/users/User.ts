@@ -75,6 +75,9 @@ export class User {
     email: string;
 
     @Property()
+    phone: string;
+
+    @Property()
     verified: boolean;
 
 
@@ -82,7 +85,7 @@ export class User {
     activated: string;
 
     @Property()
-    bio: string; ied
+    bio: string;
 
     @Required()
     @Property()

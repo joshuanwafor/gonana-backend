@@ -18,7 +18,7 @@ export class PaystackService {
    
     addUserSubaccount = async (info: CreateAccountForm, userID: string): Promise<User> => {
         if (process.env.NODE_ENV !== "production") {
-            info.business_name = "10x store",
+                info.business_name = "10x store",
                 info.settlement_bank = "033",
                 info.account_number = "2204577180",
                 info.percentage_charge = 18.2

@@ -1,6 +1,6 @@
 import { string } from "@tsed/schema";
 import axios, { AxiosResponse } from "axios";
-const SEC_KEY = "Bearer sk_live_b5592eabd7d3ca30737be9859586999fe6d76231"
+const SEC_KEY = "Bearer sk_test_9684e8c5e16ebdf4816bbfaac0c28086971cb6ca"
 
 
 export class PaystackActions {

@@ -6,13 +6,17 @@ import { FirebaseAuth } from "../../services/firebase/auth";
 import { CreateAccountForm, PaystackService } from '../../services/paystack/sumbitBankInfo';
 import { AuthMiddleware } from '../../middlewares/auth';
 import { AuthService } from "../../services/auth";
+import { TransactionService } from "../../services/transactions";
+import { TransactionModel } from "../../models/Order";
 
 
 @Controller({
   path: "/user"
 })
 export class UserCtrl {
-  constructor(private userService: UserService, private firebaseU: FirebaseAuth, private paystackService: PaystackService, private authService:AuthService) {
+  constructor(private userService: UserService, private firebaseU: FirebaseAuth,
+    private paystackService: PaystackService, private authService: AuthService,
+    private transactionsService: TransactionService) {
 
   }
 
@@ -34,9 +38,9 @@ export class UserCtrl {
    */
   @Post("/bank-account")
   @UseAuth(AuthMiddleware)
-  async updateUserPaystackBankAccount(@BodyParams() accountForm: CreateAccountForm): Promise<User> {
-    console.log(accountForm, " Form to create for user");
-    return await this.paystackService.addUserSubaccount(accountForm, this.authService.user_id)
+  async updateUserPaystackBankAccount(@BodyParams() body: CreateAccountForm): Promise<User> {
+    console.log(body, " Form to create for user");
+    return await this.paystackService.addUserSubaccount(body, this.authService.user_id)
   }
 
 
@@ -58,6 +62,13 @@ export class UserCtrl {
     throw new NotFound("User not found");
   }
 
+  @Get("/my-sales")
+  @UseAuth(AuthMiddleware)
+  async getTransactions(): Promise<TransactionModel[]> {
+    const list = await this.transactionsService.getUserTransactions(this.authService.user_id);
+    return list;
+  }
+
 
   /**
    *
@@ -67,10 +78,10 @@ export class UserCtrl {
    */
   @Put("/")
   @UseAuth(AuthMiddleware)
-  async update(@PathParams("id") id: string,
-    @BodyParams() user: any): Promise<User> {
-    user._id = id;
-
-    return this.userService.save(user);
+  async update(
+    @BodyParams() body: any): Promise<User> {
+    body.id = this.authService.user_id;
+    body._id = this.authService.user_id;
+    return this.userService.save(body);
   }
 }

@@ -13,12 +13,11 @@ export class TaxonomiesCtrl {
 
   @Get("/")
   async getItems() {
-    return this.service.query({ creator_id: this.authService.user_id });
+    return this.service.query({});
   }
 
   @Post("")
   async postItem(@BodyParams() body: any) {
-    body.creator_id = this.authService.user_id;
     return await this.service.save(body)
   }
 
