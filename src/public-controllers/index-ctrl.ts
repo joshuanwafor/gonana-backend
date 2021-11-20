@@ -37,10 +37,10 @@ export class EventsCtrl {
     @Get("/taxonomies/:taxID")
     async getCategory(@PathParams("taxID") taxID: string) {
         let resources = await this.getPageResouces();
-        let taxonomy= await this.tcontroler.find(taxID);
+        let taxonomy = await this.tcontroler.find(taxID);
         let projects = await this.pcontroler.query({});
 
-        return {...resources, projects: projects, taxonomy:taxonomy }
+        return { ...resources, projects: projects, taxonomy: taxonomy }
     }
 
 
@@ -81,5 +81,25 @@ export class EventsCtrl {
             ...resources,
             project: item,
         };
+    }
+
+    @View("fair-use.ejs")
+    @Get("/fair-use-policy")
+    async fairUse() {
+    }
+
+    @View("terms-policies.ejs")
+    @Get("/terms-and-conditions")
+    async policy() {
+    }
+
+    @View("refund.ejs")
+    @Get("/money-back-gurantee")
+    async refund() {
+    }
+
+    @View("cookies-policy.ejs")
+    @Get("/cookies-policies")
+    async cookie() {
     }
 }

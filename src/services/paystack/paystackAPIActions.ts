@@ -2,7 +2,6 @@ import { string } from "@tsed/schema";
 import axios, { AxiosResponse } from "axios";
 const SEC_KEY = "Bearer sk_test_9684e8c5e16ebdf4816bbfaac0c28086971cb6ca"
 
-
 export class PaystackActions {
 
     addSubaccount = async (info: any): Promise<any> => {
@@ -11,7 +10,7 @@ export class PaystackActions {
             method: "post",
             url: "https://api.paystack.co/subaccount",
             headers: {
-                'Authorization': SEC_KEY,
+                'Authorization':process.env.sk_live_paystack ?? SEC_KEY,
                 'Content-Type': 'application/json'
             },
             data: JSON.stringify(info)
