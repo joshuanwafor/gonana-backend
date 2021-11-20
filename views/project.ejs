@@ -4,8 +4,8 @@
         <div class="container py-2">
             <nav aria-label="breadcrumb  py-0">
                 <ol class="breadcrumb  my-0">
-                    <li class="breadcrumb-item  m-0"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item  my-0"><a href="#">Library</a></li>
+                    <li class="breadcrumb-item  m-0"><a href="/">Home</a></li>
+                    <li class="breadcrumb-item  my-0"><a href="/taxonomies">Library</a></li>
                     <li class="breadcrumb-item active  my-0" aria-current="page">Project topic</li>
                 </ol>
             </nav>
@@ -33,7 +33,7 @@
                     </span>
                     <span class="mx-2">
                         <i class="bi bi-file-earmark"></i>
-                        0
+                        <%- project.pages_count??0 %>
                     </span>
                     <span class="mx-2">
                         <i class="bi bi-cash-coin"></i>
@@ -43,7 +43,7 @@
                         <i class="bi bi-check-all"></i>
                         Abstract
                     </span><br>
-                    <div class="mt-2"><span><i class="bi bi-layers"></i> 5 Chapters</span></div>
+                    <div class="mt-2"><span><i class="bi bi-layers"></i> <%- project.chapters_count??0 %> Chapters</span></div>
                 </div>
 
                 <p class="my-3">
@@ -54,7 +54,7 @@
 
                 <div class="my-3">
                     <div class="text-muted">Purchase Fee</div>
-                    <h3>₦3000.000</h3>
+                    <h3>₦<%- project.price??0 %></h3>
                 </div>
 
                 <div>
