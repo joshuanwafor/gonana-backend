@@ -7,7 +7,7 @@ import {ProjectModel} from "../../models/Project";
 @Service()
 export class ProjectService {
   @Inject(ProjectModel)
-  private model: MongooseModel<ProjectModel>;
+   model: MongooseModel<ProjectModel>;
 
   $onInit() {
     this.reload();

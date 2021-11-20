@@ -38,7 +38,7 @@ export class EventsCtrl {
     async getCategory(@PathParams("taxID") taxID: string) {
         let resources = await this.getPageResouces();
         let taxonomy = await this.tcontroler.find(taxID);
-        let projects = await this.pcontroler.query({});
+        let projects = await this.pcontroler.model.find({ categories: { $in: [taxID] } });
 
         return { ...resources, projects: projects, taxonomy: taxonomy }
     }
