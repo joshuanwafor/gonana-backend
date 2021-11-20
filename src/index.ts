@@ -4,7 +4,7 @@ import {Server} from "./Server";
 import * as admin from 'firebase-admin';
 
 function init_firebase() {
-  var serviceAccount = require("../finalyc-007-firebase-adminsdk-xhmwt-dc9928e57a.json");
+  var serviceAccount = require("../finally-xyz-firebase-adminsdk-htuq5-3525138025.json");
 
   admin.initializeApp({
     credential: admin.credential.cert(serviceAccount)
