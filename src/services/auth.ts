@@ -15,7 +15,7 @@ export class AuthService{
     verify = (token: string)=> {
         try{
           let decoded=this.jwtService.verifyUserToken(token);
-          this.user_id= decoded._id;
+          this.user_id= decoded._id ??decoded.id;
         }catch(e){
             console.log(e);
         }

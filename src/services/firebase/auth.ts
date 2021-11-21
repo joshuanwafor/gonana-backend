@@ -21,6 +21,8 @@ export class FirebaseAuth {
             fuid: decoded.uid
         }).exec();
 
+        console.log("pre-auth-user-", user);
+
 
         if (user == null) {
             try {
@@ -32,6 +34,7 @@ export class FirebaseAuth {
                 await user.save();
             } catch (e) {
                 console.log(e);
+                throw e;
             }
         }
 

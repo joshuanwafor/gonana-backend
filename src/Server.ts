@@ -54,12 +54,12 @@ export class Server {
       .use(GlobalAcceptMimesMiddleware)
       .use(cookieParser())
       .use(compress({}))
+      .use(cors())
       .use(methodOverride())
       .use(bodyParser.json()).use(cors())
       .use(bodyParser.urlencoded({
         extended: true
       }));
-
 
     return null;
   }

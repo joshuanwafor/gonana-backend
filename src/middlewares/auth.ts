@@ -4,13 +4,16 @@ import { AuthService } from '../services/auth';
 
 @Middleware()
 export class AuthMiddleware  {
+
     constructor(private readonly authService: AuthService) {
         return
     }
+
     public use(@Req() request: any, @Res() res: any, @Context() ctx: Context) {
         // retrieve options given to the @UseAuth decorator
         if (request.headers['authorization']) {
             let authorization = request.headers['authorization'];
+            
             try {
                 this.authService.verify(authorization as string);
             } catch (e) {
