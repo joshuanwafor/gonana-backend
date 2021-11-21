@@ -6,7 +6,7 @@ import { TaxonomyModel } from "../../models/Taxonomy";
 @Service()
 export class TaxonomyService {
   @Inject(TaxonomyModel)
-  private model: MongooseModel<TaxonomyModel>;
+  public model: MongooseModel<TaxonomyModel>;
 
   /**
    * Find a item by his ID.
