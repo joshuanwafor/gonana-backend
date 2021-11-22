@@ -23,7 +23,6 @@ export class FirebaseAuth {
 
         console.log("pre-auth-user-", user);
 
-
         if (user == null) {
             try {
                 user = new this.User({

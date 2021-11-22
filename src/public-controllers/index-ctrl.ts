@@ -15,6 +15,9 @@ import { NotFound } from "@tsed/exceptions";
 import { TaxonomyService } from "../services/taxonomies/TaxonomyService";
 import { ProjectService } from "../services/projects/ProjectService";
 
+var MarkdownIt = require('markdown-it'),
+    md = new MarkdownIt();
+
 @Controller("/")
 
 export class EventsCtrl {
@@ -76,6 +79,9 @@ export class EventsCtrl {
     @Get("/projects/:itemID/purchase")
     async purchaseProject(@PathParams("itemID") itemID: string) {
         let item = await this.pcontroler.find(itemID);
+
+        item.body= md.render(item.body??"");
+        
         let resources = await this.getPageResouces();
         return {
             ...resources,
