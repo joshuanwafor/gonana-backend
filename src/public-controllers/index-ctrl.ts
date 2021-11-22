@@ -81,7 +81,9 @@ export class EventsCtrl {
         let item = await this.pcontroler.find(itemID);
 
         item.body= md.render(item.body??"");
-        
+
+        console.log(md.render(item.body??""))
+
         let resources = await this.getPageResouces();
         return {
             ...resources,
