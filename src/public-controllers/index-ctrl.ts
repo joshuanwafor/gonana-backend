@@ -80,7 +80,7 @@ export class EventsCtrl {
     async purchaseProject(@PathParams("itemID") itemID: string) {
         let item = await this.pcontroler.find(itemID);
 
-        item.body= md.render(item.body??"");
+        item.body= ".render(item.body??)";
 
         console.log(md.render(item.body??""))
 
