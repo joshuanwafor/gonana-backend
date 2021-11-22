@@ -68,6 +68,9 @@ export class EventsCtrl {
     @Get("/projects/:itemID")
     async getProject(@PathParams("itemID") itemID: string) {
         let item = await this.pcontroler.find(itemID);
+
+        item.body=md.render(item.body);
+        
         let resources = await this.getPageResouces();
         return {
             ...resources,
@@ -80,14 +83,11 @@ export class EventsCtrl {
     async purchaseProject(@PathParams("itemID") itemID: string) {
         let item = await this.pcontroler.find(itemID);
 
-        item.body= ".render(item.body??)";
-
-        console.log(md.render(item.body??""))
-
         let resources = await this.getPageResouces();
         return {
             ...resources,
             project: item,
+            body: md.render(item.body)
         };
     }
 
