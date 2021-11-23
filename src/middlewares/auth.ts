@@ -15,7 +15,7 @@ export class AuthMiddleware  {
             let authorization = request.headers['authorization'];
             
             try {
-                this.authService.verify(authorization as string);
+                this.authService.verify(authorization);
             } catch (e) {
                 res.status(401).send("Not authenticated");
                 return
