@@ -41,6 +41,7 @@ export class UserService {
 
     $log.debug({ message: "User saved", model });
 
+    
     return model;
   }
 
