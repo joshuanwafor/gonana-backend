@@ -17,6 +17,8 @@ export class FirebaseAuth {
 
         let decoded = await firebase.auth().verifyIdToken(idToken);
 
+        console.log(decoded, " --- decoded token goes here")
+
         let user = await this.User.findOne({
             fuid: decoded.uid
         }).exec();
