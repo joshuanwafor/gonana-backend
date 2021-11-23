@@ -10,7 +10,7 @@ export class PaystackActions {
             method: "post",
             url: "https://api.paystack.co/subaccount",
             headers: {
-                'Authorization':process.env.sk_live_paystack ?? SEC_KEY,
+                'Authorization': process.env.sk_live_paystack ?? SEC_KEY,
                 'Content-Type': 'application/json'
             },
             data: JSON.stringify(info)
@@ -32,28 +32,28 @@ export class PaystackActions {
         {
             email: string,
             amount: string,
-            currency: string,
-            callback_url: "http://url.com",
-            metadata: string,
             reference: string,
             subaccount: string,
-
         }
     ): Promise<{
         authorization_url: string;
         access_code: string;
         reference: string;
     }> => {
+        // @ts-ignore
+        data.callback_url = "https://finalyc.herokuapp.com/rest/verify-pay"
 
         let response = await axios({
             method: "post",
             url: "https://api.paystack.co/transaction/initialize",
             headers: {
-                'Authorization': SEC_KEY,
+                'Authorization': process.env.sk_live_paystack ?? SEC_KEY,
                 'Content-Type': 'application/json'
             },
             data: JSON.stringify(data)
         });
+
+        console.log(response);
 
         let initData: {
             authorization_url: string;
@@ -69,11 +69,11 @@ export class PaystackActions {
             method: "get",
             url: `https://api.paystack.co/transaction/verify/${REFERENCE}`,
             headers: {
-                'Authorization': SEC_KEY,
+                'Authorization': process.env.sk_live_paystack ?? SEC_KEY,
                 'Content-Type': 'application/json'
             }
         });
-
+        console.log(response)
         if (response.status == 201 || response.status == 200) {
             if (response.data.status == true && response.data.data.status == "success") {
                 return true;

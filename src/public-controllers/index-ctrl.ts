@@ -69,7 +69,7 @@ export class EventsCtrl {
     async getProject(@PathParams("itemID") itemID: string) {
         let item = await this.pcontroler.find(itemID);
 
-        item.body=md.render(item.body);
+        item.body=md.render(item.body??"");
         
         let resources = await this.getPageResouces();
         return {

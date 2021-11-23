@@ -1,4 +1,4 @@
-import { BodyParams, Controller, Delete, Get, PathParams, Post, Put, UseAuth } from "@tsed/common";
+import { BodyParams, Controller, Delete, Get, PathParams, Post, Put, Res, UseAuth } from "@tsed/common";
 import { AuthMiddleware } from "../../middlewares/auth";
 import { AuthService } from "../../services/auth";
 import { ProjectService } from "../../services/projects/ProjectService";
@@ -10,6 +10,12 @@ import { ProjectService } from "../../services/projects/ProjectService";
 export class ProjectCtrl {
   constructor(private service: ProjectService, private authService: AuthService) {
 
+  }
+
+  @Post("/make-payment")
+  async purchaseProject(@BodyParams() body: any,@Res() res: Res) {
+    console.log(body);
+    res.redirect("google.com")
   }
 
   @Get("/")
@@ -40,7 +46,7 @@ export class ProjectCtrl {
       await this.service.save(body);
       return true;
     } catch (e) {
-      
+
     }
   }
 
