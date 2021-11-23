@@ -19,6 +19,7 @@ export class UserService {
    * @returns {undefined|Course}
    */
   async find(id: string): Promise<User> {
+    console.log(id ,"----ID goes here")
     $log.debug("Search a user from ID", id);
     const user = await this.User.findById(id).exec();
 
