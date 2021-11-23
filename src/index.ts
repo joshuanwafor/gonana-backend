@@ -3,11 +3,17 @@ import {PlatformExpress} from "@tsed/platform-express";
 import {Server} from "./Server";
 import * as admin from 'firebase-admin';
 
+
+
+
 function init_firebase() {
-  var serviceAccount = require("../finally-xyz-firebase-adminsdk-htuq5-3525138025.json");
+
+
+
+  var serviceAccountFile = require("../finally-xyz-firebase-adminsdk-htuq5-3a56e08458.json");
 
   admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount)
+    credential: admin.credential.cert(serviceAccountFile)
   });
 
 }
