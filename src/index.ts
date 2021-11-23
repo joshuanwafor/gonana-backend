@@ -16,6 +16,7 @@ function init_firebase() {
     credential: admin.credential.cert(serviceAccountFile)
   });
 
+
 }
 
 
