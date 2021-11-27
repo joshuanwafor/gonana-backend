@@ -54,7 +54,7 @@ class PaystackBankIntegrationSchema {
 }
 
 
-@Model({ schemaOptions: { timestamps: true, collection: 'users', }, collection: 'users', })
+@Model({ schemaOptions: { timestamps: true }, })
 export class User {
 
     @Name("id")
