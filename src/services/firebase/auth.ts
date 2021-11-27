@@ -56,7 +56,7 @@ export class FirebaseAuth {
         }
 
         // generate token
-        const token = await this.jwtService.generateUserToken(user).then();
+        const token =  this.jwtService.generateUserToken(user);
         console.log("generated - ", token, "for ", user);
         return token;
     }

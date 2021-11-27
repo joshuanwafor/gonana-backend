@@ -14,7 +14,7 @@ export class AuthService {
 
   verify = async (token: string) => {
     try {
-      let decoded = await this.jwtService.verifyUserToken(token);
+      let decoded = this.jwtService.verifyUserToken(token);
       console.log(decoded, "after verify");
       this.user_id = decoded._id;
     } catch (e) {

@@ -10,7 +10,7 @@ var privateKey = PRIVATE_KEY;
 @Service()
 export class JWTService {
 
-    async generateUserToken(user: User): Promise<{ token: string }> {
+     generateUserToken(user: User): { token: any } {
         $log.debug("generating token for ", user);
         let pack = { _id: user._id.toString(), email: user.email, name: user.fullname, fuid: user.fuid };
 
@@ -21,7 +21,7 @@ export class JWTService {
         return { token: token }
     }
 
-    async verifyUserToken(token: string): Promise<any> {
+    verifyUserToken(token: string): any {
         try {
             var decoded = jwt.decode(token);
             // var decoded = jwt.verify(token, {
