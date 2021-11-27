@@ -9,7 +9,9 @@ export class AuthMiddleware  {
         return
     }
 
-    public use(@Req() request: any, @Res() res: any, @Context() ctx: Context) {
+    public use(@Req() request: any, @Res() res: Res, @Context() ctx: Context) {
+        res.append("Access-Control-Allow-Headers","Content-Type, authorization, Authorization");
+
         // retrieve options given to the @UseAuth decorator
         if (request.headers['authorization']) {
             let authorization = request.headers['authorization'];

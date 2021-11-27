@@ -5,19 +5,10 @@ import { User } from '../../models/users/User';
 
 @Service()
 export class UserService {
-
   @Inject(User)
   private User: MongooseModel<User>;
-
   $onInit() {
-
   }
-  
-  /**
-   * Find a course by his ID.
-   * @param id
-   * @returns {undefined|Course}
-   */
   async find(id: string): Promise<User> {
     console.log(id ,"----ID goes here")
     $log.debug("Search a user from ID", id);
@@ -26,34 +17,16 @@ export class UserService {
     $log.debug("Found", user);
     return user;
   }
-
-  /**
-   *
-   * @param User
-   * @returns {Promise<TResult|TResult2|User>}
-   */
   async save(user: any): Promise<User> {
     const model = new this.User(user);
-    $log.debug({ message: "Save user", model });
-    await model.save();
+
     await model.updateOne(user, { upsert: true });
 
     return model;
   }
-
-  /**
-   *
-   * @returns {User[]}
-   */
   async query(options = {}): Promise<User[]> {
     return this.User.find(options).exec();
   }
-
-  /**
-   *
-   * @param id
-   * @returns {Promise<User>}
-   */
   async remove(id: string): Promise<User> {
     return await this.User.findById(id).remove().exec();
   }

@@ -41,13 +41,10 @@ export class ProjectService {
    * @returns {Promise<TResult|TResult2|ProductModel>}
    */
   async save(item: ProjectModel): Promise<ProjectModel> {
-    $log.debug({message: "Validate item", item});
-
+  
     const model = new this.model(item);
-    $log.debug({message: "Save item", item});
-    await model.updateOne(item, {upsert: true});
 
-    $log.debug({message: "Item saved", model});
+    await model.updateOne(item, {upsert: true});
 
     return model;
   }

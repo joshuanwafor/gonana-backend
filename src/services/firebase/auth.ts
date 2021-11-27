@@ -1,6 +1,5 @@
 import { Inject, Service } from "@tsed/common";
 import { MongooseModel } from "@tsed/mongoose";
-import { $log } from "@tsed/logger";
 import { User } from '../../models/users/User';
 import { JWTService } from "../jsonwebtokens/userToken";
 import firebase from "firebase-admin";
