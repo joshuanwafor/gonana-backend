@@ -33,11 +33,9 @@ export class UserService {
    * @returns {Promise<TResult|TResult2|User>}
    */
   async save(user: any): Promise<User> {
-    $log.debug({ message: "Validate user", user });
-
     const model = new this.User(user);
     $log.debug({ message: "Save user", model });
-    model.save();
+    await model.save();
     await model.updateOne(user, { upsert: true });
 
     return model;

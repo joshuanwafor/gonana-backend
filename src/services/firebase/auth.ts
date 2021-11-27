@@ -43,11 +43,10 @@ export class FirebaseAuth {
                     fullname:"Default Fullname"
                 };
                 let model = new this.User(newUserObj);
+                
                 model.isNew= true;
-            
                 await model.save()
-                console.log("after saving new user", model);
-
+               
                 user = model;
             } catch (e) {
                 console.log(e);
