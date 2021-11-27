@@ -63,5 +63,9 @@ export class Server {
 
     return null;
   }
+  public $onMountingMiddlewares(): void {
+    this.app
+      .use(cors());
+  }
 }
 
