@@ -87,6 +87,7 @@ export class User {
     @Property()
     bio: string;
 
+    @Name("fuid")
     @Required()
     @Property()
     fuid: string;
