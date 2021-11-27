@@ -39,10 +39,12 @@ export class FirebaseAuth {
                 let newUserObj = {
                     email: decoded.email,
                     fuid: decoded.uid,
-                    photo: decoded.picture
+                    photo: decoded.picture,
+                    fullname:"Default Fullname"
                 };
                 let model = new this.User(newUserObj);
                 model.isNew= true;
+            
                 await model.save()
                 console.log("after saving new user", model);
 
