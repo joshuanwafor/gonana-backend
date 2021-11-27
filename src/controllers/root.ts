@@ -31,16 +31,13 @@ export class RootCtrl {
 
   @Get("/verify-pay")
   async verifyPay(@Res() res: Res, @Req() req: Req, @QueryParams() query: any) {
-      console.log(query)
-   
+    console.log(query)
     try{
         let transaction = await this.service.verifyTransaction(query['reference']);
-       
         console.log(transaction)
     }catch(e){
         console.log(e);
         res.redirect("/")
     }
   }
-
 }

@@ -20,7 +20,6 @@ export class FirebaseAuth {
 
     async auth(idToken: string) {
 
-
         let decoded: firebase.auth.DecodedIdToken;
         try {
             decoded = await firebase.auth().verifyIdToken(idToken);
@@ -32,8 +31,10 @@ export class FirebaseAuth {
             fuid: decoded.uid
         }).exec();
 
+        console.log("on find user ", user)
+
     
-        if (user == null) {
+        if (user == null || user== undefined) {
             try {
                 let newUserObj = {
                     email: decoded.email,
@@ -41,7 +42,7 @@ export class FirebaseAuth {
                     photo: decoded.picture
                 };
 
-                let model = await this.userService.save(newUserObj);
+                let model = await this.User.create(newUserObj);
                 console.log("after saving new user", model);
 
                 user = model;
@@ -54,7 +55,6 @@ export class FirebaseAuth {
         // generate token
         const token = await this.jwtService.generateUserToken(user).then();
         console.log("generated - ", token, "for ", user);
-        $log.debug("Generated token for ", user, " -> ", token)
         return token;
     }
 }

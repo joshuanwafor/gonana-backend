@@ -3,7 +3,7 @@ import {Required, Name, Description, Property} from "@tsed/schema";
 import {Model, Ref} from "@tsed/mongoose";
 
 
-@Model()
+@Model({ schemaOptions: { timestamps: true, collection: 'transactions', }, collection: 'transactions', })
 export class TransactionModel {
   @Name("id")
   _id: string;
