@@ -28,7 +28,7 @@ export class FirebaseAuth {
         }
 
         let user: User = await this.User.findOne({
-            fuid: decoded.uid
+            email: decoded.email
         }).exec();
 
         console.log("on find user ", user)
