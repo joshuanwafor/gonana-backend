@@ -37,11 +37,9 @@ export class UserService {
 
     const model = new this.User(user);
     $log.debug({ message: "Save user", model });
+    model.save();
     await model.updateOne(user, { upsert: true });
 
-    $log.debug({ message: "User saved", model });
-
-    
     return model;
   }
 

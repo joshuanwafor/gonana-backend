@@ -41,8 +41,9 @@ export class FirebaseAuth {
                     fuid: decoded.uid,
                     photo: decoded.picture
                 };
-
-                let model = await this.User.create(newUserObj);
+                let model = new this.User(newUserObj);
+                model.isNew= true;
+                await model.save()
                 console.log("after saving new user", model);
 
                 user = model;
