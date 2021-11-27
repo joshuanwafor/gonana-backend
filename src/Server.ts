@@ -50,22 +50,18 @@ export class Server {
   app: PlatformApplication;
 
   $beforeRoutesInit(): void | Promise<any> {
-    this.app
+    this.app.use(cors())
       .use(GlobalAcceptMimesMiddleware)
       .use(cookieParser())
       .use(compress({}))
-      .use(cors())
+      
       .use(methodOverride())
-      .use(bodyParser.json()).use(cors())
+      .use(bodyParser.json())
       .use(bodyParser.urlencoded({
         extended: true
       }));
 
     return null;
-  }
-  public $onMountingMiddlewares(): void {
-    this.app
-      .use(cors());
   }
 }
 
