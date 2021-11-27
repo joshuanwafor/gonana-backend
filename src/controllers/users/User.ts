@@ -29,8 +29,7 @@ export class UserCtrl {
   @Post("/auth")
   async auth(@BodyParams() body: { token: string}): Promise<any> {
     try {
-      const res = await this.firebaseU.auth(body.token);
-      return res;
+      return await this.firebaseU.auth(body.token);
     } catch (e) {
       throw e;
     }

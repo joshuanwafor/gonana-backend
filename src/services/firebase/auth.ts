@@ -33,30 +33,26 @@ export class FirebaseAuth {
 
         console.log("on find user ", user)
 
-    
-        if (user == null || user== undefined) {
+        if (user == null || user == undefined) {
             try {
-                let newUserObj = {
+               let newUser = await this.userService.save({
                     email: decoded.email,
                     fuid: decoded.uid,
-                    photo: decoded.picture,
-                    fullname:"Default Fullname"
-                };
-                let model = new this.User(newUserObj);
-                
-                model.isNew= true;
-                await model.save()
-               
-                user = model;
+                    fullname: "Default Fullname"
+                });
+
+                return this.generateUserToken(newUser);
+
             } catch (e) {
                 console.log(e);
                 throw e;
             }
         }
 
-        // generate token
-        const token =  this.jwtService.generateUserToken(user);
-        console.log("generated - ", token, "for ", user);
-        return token;
+        return this.generateUserToken(user);
+    }
+
+    generateUserToken(user: User) {
+        return this.jwtService.generateUserToken(user);
     }
 }
