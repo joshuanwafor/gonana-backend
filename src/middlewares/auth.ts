@@ -13,20 +13,22 @@ export class AuthMiddleware  {
         // retrieve options given to the @UseAuth decorator
         if (request.headers['authorization']) {
             let authorization = request.headers['authorization'];
-            
+            console.log(authorization, "goes here auth")
             try {
                 this.authService.verify(authorization);
+             
             } catch (e) {
                 res.status(401).send("Not authenticated");
                 return
             }
         } else {
-            res.status(401).send("Not authenticated");
+            res.status(401).send("Not authenticated - auth token not provided");
             return
         }
 
         if (this.authService.user_id == null) {
-            res.status(401).send("Not authenticated");
+            res.status(401).send("Not authenticated - id no provided");
+            return 
         }
     }
 }

@@ -3,23 +3,23 @@ import { Inject, Injectable } from "@tsed/di";
 import { JWTService } from "./jsonwebtokens/userToken";
 
 @Injectable({
-    type: ProviderType.VALUE,
-    scope: ProviderScope.REQUEST,
-  })
-export class AuthService{
-    user_id:string|null= null;
+  type: ProviderType.VALUE,
+  scope: ProviderScope.REQUEST,
+})
+export class AuthService {
+  user_id: string | null = null;
 
-    @Inject(JWTService)
-    private jwtService: JWTService;
+  @Inject(JWTService)
+  jwtService: JWTService;
 
-    verify = (token: string)=> {
-        try{
-          let decoded=this.jwtService.verifyUserToken(token);
-          console.log(decoded, "after verify")
-          this.user_id= decoded._id;
-        }catch(e){
-            console.log(e);
-            throw e;
-        }
+  verify = async (token: string) => {
+    try {
+      let decoded = await this.jwtService.verifyUserToken(token);
+      console.log(decoded, "after verify")
+      this.user_id = decoded._id;
+    } catch (e) {
+      console.log(e);
+      throw e;
     }
+  }
 }

@@ -8,6 +8,7 @@ import { UserService } from "../users/UserService";
 
 @Service()
 export class FirebaseAuth {
+
     @Inject(User)
     private User: MongooseModel<User>;
 
@@ -15,31 +16,35 @@ export class FirebaseAuth {
     private userService: UserService;
 
     @Inject(JWTService)
-    private jwtService: JWTService;
+    public jwtService: JWTService;
 
     async auth(idToken: string) {
 
-        let decoded = await firebase.auth().verifyIdToken(idToken);
 
-        console.log(decoded, " --- decoded token goes here")
+        let decoded: firebase.auth.DecodedIdToken;
+        try {
+            decoded = await firebase.auth().verifyIdToken(idToken);
+        } catch (e) {
+            throw e;
+        }
 
         let user: User = await this.User.findOne({
             fuid: decoded.uid
         }).exec();
 
-        console.log("pre-auth-user-", user);
-
+    
         if (user == null) {
             try {
-                let newUserObj= { email: decoded.email,
+                let newUserObj = {
+                    email: decoded.email,
                     fuid: decoded.uid,
-                    photo: decoded.picture};
+                    photo: decoded.picture
+                };
 
                 let model = await this.userService.save(newUserObj);
-
                 console.log("after saving new user", model);
-                user = model;
 
+                user = model;
             } catch (e) {
                 console.log(e);
                 throw e;
@@ -47,7 +52,7 @@ export class FirebaseAuth {
         }
 
         // generate token
-        const token = this.jwtService.generateUserToken(user);
+        const token = await this.jwtService.generateUserToken(user).then();
         console.log("generated - ", token, "for ", user);
         $log.debug("Generated token for ", user, " -> ", token)
         return token;
