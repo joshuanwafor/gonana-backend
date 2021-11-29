@@ -44,6 +44,7 @@ export class ProjectService {
 
     if (process.env.PORT != undefined) {
       let object = { ...model.toObject(), objectID: model._id ?? model.id }
+      object.body="";
       project_index.saveObject(object)
     }
 

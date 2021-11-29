@@ -12,11 +12,6 @@ export class ProjectCtrl {
 
   }
 
-  @Post("/make-payment")
-  async purchaseProject(@BodyParams() body: any,@Res() res: Res) {
-    console.log(body);
-    res.redirect("google.com")
-  }
 
   @Get("/")
   @UseAuth(AuthMiddleware)
