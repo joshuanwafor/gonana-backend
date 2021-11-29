@@ -9,9 +9,7 @@ import {
     UseBefore,
     View
 } from "@tsed/common";
-import { MergeParams } from "@tsed/platform-express";
-import { Required, Status, Description, Summary } from "@tsed/schema";
-import { NotFound } from "@tsed/exceptions";
+
 import { TaxonomyService } from "../services/taxonomies/TaxonomyService";
 import { ProjectService } from "../services/projects/ProjectService";
 
@@ -46,8 +44,6 @@ export class EventsCtrl {
         return { ...resources, projects: projects, taxonomy: taxonomy }
     }
 
-
-
     async getPageResouces(): Promise<{ taxonomies: any }> {
         let items = await this.tcontroler.query({});
         return {
@@ -55,13 +51,9 @@ export class EventsCtrl {
         }
     }
 
-
-    @View("projects.ejs")
-    @Get("/projects")
+    @Get("/project-list")
     async getProjects() {
-        let projects = await this.pcontroler.query({});
-        let resources = await this.getPageResouces();
-        return { ...resources, projects: projects }
+        return await this.pcontroler.query({});
     }
 
     @View("project.ejs")
