@@ -2,6 +2,13 @@ import {Inject, Service} from "@tsed/common";
 import {MongooseModel} from "@tsed/mongoose";
 import {$log} from "@tsed/logger";
 import {ProjectModel} from "../../models/Project";
+import algoliasearch from 'algoliasearch';
+
+const applicationID = "VEDUWHENK3";
+const API = "1817dcbe9307df658821660a8f853e9d"
+
+const searchClient = algoliasearch(applicationID, API);
+const project_index = searchClient.initIndex('projects');
 
 
 @Service()
@@ -9,18 +16,7 @@ export class ProjectService {
   @Inject(ProjectModel)
    model: MongooseModel<ProjectModel>;
 
-  $onInit() {
-    this.reload();
-  }
 
-  async reload() {
-    // const calendars = await this.model.find({});
-
-    // if (calendars.length === 0) {
-    //   const promises = require("../../../resources/calendars.json").map(calendar => this.save(calendar));
-    //   await Promise.all(promises);
-    // }
-  }
 
   /**
    * Find a item by his ID.
@@ -45,6 +41,10 @@ export class ProjectService {
     const model = new this.model(item);
 
     await model.updateOne(item, {upsert: true});
+
+    if(process.env.PORT!=undefined){
+      project_index.saveObject(model.toObject())
+    }
 
     return model;
   }
