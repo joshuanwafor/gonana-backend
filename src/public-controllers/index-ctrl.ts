@@ -56,18 +56,11 @@ export class EventsCtrl {
         return await this.pcontroler.query({});
     }
 
-    @View("project.ejs")
+
     @Get("/projects/:itemID")
     async getProject(@PathParams("itemID") itemID: string) {
-        let item = await this.pcontroler.find(itemID);
+        return await this.pcontroler.find(itemID);
 
-        item.body=md.render(item.body??"");
-        
-        let resources = await this.getPageResouces();
-        return {
-            ...resources,
-            project: item,
-        };
     }
 
     @View("index.ejs")

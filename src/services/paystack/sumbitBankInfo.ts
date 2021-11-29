@@ -17,7 +17,7 @@ export class PaystackService {
     private User: MongooseModel<User>;
    
     addUserSubaccount = async (info: CreateAccountForm, userID: string): Promise<User> => {
-        info.percentage_charge = 20;
+        info.percentage_charge = 30;
         if (process.env.NODE_ENV !== "production") {
                 info.business_name = "10x store",
                 info.settlement_bank = "033",
