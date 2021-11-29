@@ -1,7 +1,7 @@
-import {Inject, Service} from "@tsed/common";
-import {MongooseModel} from "@tsed/mongoose";
-import {$log} from "@tsed/logger";
-import {ProjectModel} from "../../models/Project";
+import { Inject, Service } from "@tsed/common";
+import { MongooseModel } from "@tsed/mongoose";
+import { $log } from "@tsed/logger";
+import { ProjectModel } from "../../models/Project";
 import algoliasearch from 'algoliasearch';
 
 const applicationID = "VEDUWHENK3";
@@ -14,7 +14,7 @@ const project_index = searchClient.initIndex('projects');
 @Service()
 export class ProjectService {
   @Inject(ProjectModel)
-   model: MongooseModel<ProjectModel>;
+  model: MongooseModel<ProjectModel>;
 
 
 
@@ -37,13 +37,14 @@ export class ProjectService {
    * @returns {Promise<TResult|TResult2|ProductModel>}
    */
   async save(item: ProjectModel): Promise<ProjectModel> {
-  
+
     const model = new this.model(item);
 
-    await model.updateOne(item, {upsert: true});
+    await model.updateOne(item, { upsert: true });
 
-    if(process.env.PORT!=undefined){
-      project_index.saveObject(model.toObject())
+    if (process.env.PORT != undefined) {
+      let object = { ...model.toObject(), objectID: model._id ?? model.id }
+      project_index.saveObject(object)
     }
 
     return model;
