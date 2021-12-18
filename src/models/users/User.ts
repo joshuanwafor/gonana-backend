@@ -1,5 +1,5 @@
 import { } from "@tsed/common";
-import { Model, ObjectID, PostHook, PreHook, Schema } from "@tsed/mongoose";
+import { Model,  Schema } from "@tsed/mongoose";
 import { Required, Name, Property, CollectionOf } from "@tsed/schema";
 
 @Schema()
@@ -52,7 +52,6 @@ class PaystackBankIntegrationSchema {
     @Property()
     updatedAt: string;
 }
-
 
 @Model({ schemaOptions: { timestamps: true }, })
 export class User {

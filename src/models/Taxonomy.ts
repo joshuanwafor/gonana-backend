@@ -3,7 +3,6 @@ import {Required, Name, Description, Property} from "@tsed/schema";
 import {Model, Ref} from "@tsed/mongoose";
 
 
-
 @Model({ schemaOptions: { timestamps: true, collection: 'taxonomies', }, collection: 'taxonomies', })
 export class TaxonomyModel {
   @Name("id")
