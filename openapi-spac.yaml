@@ -1,0 +1,643 @@
+openapi: 3.0.0
+info:
+  title: zane-core
+  version: '1.0'
+  description: Full api description goes here
+  contact:
+    name: Joshua Nwafor
+    email: joshuanwafor01@gmail.com
+servers:
+  - url: 'http://localhost:8000/rest'
+    description: Joshua Nwafor
+paths:
+  /user/my-sales:
+    get:
+      summary: get-account-sales
+      tags:
+        - user
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Order'
+      operationId: get-user-sales
+      description: Returns all user sales
+  /user:
+    get:
+      summary: get-user-profile
+      description: Returns user profile
+      tags:
+        - user
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          $ref: '#/components/responses/GenericResponse'
+        '401':
+          description: Unauthorized
+        '500':
+          $ref: '#/components/responses/GenericResponse'
+      operationId: get-user-profile
+    put:
+      description: Updates user profile
+      summary: update-user-profile
+      operationId: update-user-profile
+      responses:
+        '200':
+          description: OK
+        '400':
+          $ref: '#/components/responses/GenericResponse'
+        '401':
+          $ref: '#/components/responses/GenericResponse'
+        '404':
+          $ref: '#/components/responses/GenericResponse'
+        '500':
+          $ref: '#/components/responses/GenericResponse'
+      tags:
+        - user
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+  /user/bank-account:
+    post:
+      summary: add-bank-account
+      operationId: add-bank-account
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+        '500':
+          description: Internal Server Error
+      description: Updates user bank account
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                business_name:
+                  type: string
+                settlement_bank:
+                  type: string
+                account_number:
+                  type: string
+                percentage_charge:
+                  type: string
+                primary_contact_email:
+                  type: string
+                primary_contact_name:
+                  type: string
+                primary_contact_phone:
+                  type: string
+      tags:
+        - user
+  /user/auth:
+    post:
+      summary: get-user-auth-token
+      operationId: get-user-auth-token
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+        '400':
+          $ref: '#/components/responses/GenericResponse'
+        '500':
+          $ref: '#/components/responses/GenericResponse'
+      tags:
+        - user
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                token:
+                  type: string
+      description: Queries user auth token
+  '/users/{userId}':
+    parameters:
+      - schema:
+          type: integer
+        name: userId
+        in: path
+        required: true
+        description: Id of an existing user.
+    get:
+      summary: get-user-by-id
+      tags:
+        - user
+      responses:
+        '200':
+          description: User Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+              examples:
+                example-1:
+                  value:
+                    id: 142
+                    firstName: Alice
+                    lastName: Smith
+                    email: alice.smith@gmail.com
+                    dateOfBirth: '1997-10-31'
+                    emailVerified: true
+                    signUpDate: '2019-08-24'
+        '400':
+          $ref: '#/components/responses/GenericResponse'
+        '500':
+          $ref: '#/components/responses/GenericResponse'
+      operationId: get-user-by-id
+      description: Finds and returns a user profile by id
+  /users:
+    get:
+      summary: get-users
+      operationId: get-users
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+        '400':
+          $ref: '#/components/responses/GenericResponse'
+        '500':
+          $ref: '#/components/responses/GenericResponse'
+      tags:
+        - user
+      description: get all users available in the system
+  /transaction/initialize:
+    get:
+      summary: initialize-transaction
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reference:
+                    type: string
+                  access_code:
+                    type: string
+                  authorization_url:
+                    type: string
+      operationId: initialize-transaction
+      description: initializes payment transaction with paystack
+  /taxonomies:
+    get:
+      summary: get-taxonomies
+      tags:
+        - taxonomy
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    description:
+                      type: string
+                    parent_id:
+                      type: string
+                    type:
+                      type: string
+                    _id:
+                      type: string
+              examples:
+                example-1:
+                  value:
+                    - name: string
+                      description: string
+                      parent_id: string
+                      type: string
+                      _id: string
+      operationId: get-taxonomies
+      description: Returns a list of all taxonomies
+  /voucher:
+    get:
+      summary: get-vouchers
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Product'
+              examples:
+                example-1:
+                  value:
+                    - name: string
+                      description: string
+                      parent_id: string
+                      type: string
+                      _id: string
+        '400':
+          description: Bad Request
+      operationId: get-vouchers
+      description: Returns a list of all taxonomies
+      tags:
+        - voucher
+    parameters: []
+    post:
+      summary: publish-voucher
+      operationId: publish-voucher
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+        '400':
+          description: Bad Request
+        '500':
+          description: Internal Server Error
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Product'
+        description: ''
+      tags:
+        - voucher
+  /products:
+    get:
+      summary: get-products
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Product'
+              examples:
+                example-1:
+                  value:
+                    - name: string
+                      description: string
+                      parent_id: string
+                      type: string
+                      _id: string
+        '400':
+          description: Bad Request
+      operationId: get-products
+      description: Returns a list of products
+      tags:
+        - product
+    parameters: []
+    post:
+      summary: publish-product
+      operationId: publish-product
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+        '400':
+          description: Bad Request
+        '500':
+          description: Internal Server Error
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Product'
+        description: ''
+      description: Publishes a product
+      tags:
+        - product
+  '/products/:id':
+    get:
+      summary: get-product
+      tags:
+        - product
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Product'
+              examples: {}
+      operationId: get-product
+      description: Returns a list of all taxonomies
+    parameters: []
+    put:
+      summary: ''
+      operationId: update-prduct
+      responses:
+        '200':
+          description: OK
+        '500':
+          description: Internal Server Error
+      description: updates product properties
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Product'
+        description: ''
+      tags:
+        - product
+    delete:
+      summary: delete-product
+      operationId: delete-product
+      responses:
+        '200':
+          description: OK
+        '500':
+          description: Internal Server Error
+      tags:
+        - product
+  '/voucher/:id':
+    get:
+      summary: get-voucher
+      tags:
+        - voucher
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Voucher'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Product'
+              examples: {}
+      operationId: get-voucher
+      description: Returns voucher by id
+    parameters: []
+    put:
+      summary: update-voucher
+      operationId: update-voucher
+      responses:
+        '200':
+          description: OK
+        '500':
+          description: Internal Server Error
+      description: Update voucher
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Voucher'
+        description: ''
+      tags:
+        - voucher
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: authorization
+  schemas:
+    User:
+      title: User
+      type: object
+      description: ''
+      properties:
+        id:
+          type: integer
+          description: Unique identifier for the given user.
+        email:
+          type: string
+        first_name:
+          type: string
+          format: date
+          example: '1997-10-31'
+        last_name:
+          type: string
+        verified:
+          type: boolean
+          description: Set to true if the user's email has been verified.
+        created_at:
+          type: string
+          format: date
+          description: The date that the user was created.
+        updated_at:
+          type: string
+          format: date
+        fuid:
+          type: string
+        account_status:
+          type: boolean
+        bio:
+          type: string
+        photo:
+          type: string
+        paystack_bank_integration:
+          type: object
+          properties:
+            business_name:
+              type: string
+            account_number:
+              type: string
+            percentage_charge:
+              type: number
+            settlement_bank:
+              type: number
+            currency:
+              type: string
+            bank:
+              type: string
+            integration:
+              type: string
+            domain:
+              type: string
+            subaccount_code:
+              type: string
+            is_verified:
+              type: boolean
+            settlement_schedule:
+              type: string
+            active:
+              type: string
+            id:
+              type: string
+            createdAt:
+              type: string
+            updatedAt:
+              type: string
+        phone:
+          type: string
+        address:
+          type: object
+          properties:
+            country:
+              type: string
+            state:
+              type: string
+            street:
+              type: string
+            zip_code:
+              type: string
+            '':
+              type: string
+    Voucher:
+      title: Vourcher
+      type: object
+      description: ''
+      properties:
+        id:
+          type: string
+        farmer_id:
+          type: string
+        bank_id:
+          type: string
+        description:
+          type: string
+        status:
+          type: string
+        created_at:
+          type: string
+        total_amount:
+          type: string
+        interest_rate:
+          type: string
+        repayment_date:
+          type: string
+    Order:
+      title: Order
+      type: object
+      properties:
+        id:
+          type: string
+        created_at:
+          type: string
+        updated_at:
+          type: string
+        buyer_email:
+          type: string
+        buyer_phone:
+          type: string
+        project_id:
+          type: string
+        ' merchant_id':
+          type: string
+        description:
+          type: string
+        status:
+          type: string
+        transaction_ref:
+          type: string
+        ' amount':
+          type: string
+        details:
+          type: string
+    LoanService:
+      title: LoanService
+      type: object
+      properties:
+        id:
+          type: string
+        service_type:
+          type: string
+        amount:
+          type: string
+        voucher_id:
+          type: string
+        provider_id:
+          type: string
+        farmer_id:
+          type: string
+        status:
+          type: string
+        service_review:
+          type: string
+        description:
+          type: string
+    VoucherLenderResponse:
+      title: VoucherLenderResponse
+      type: object
+      properties:
+        id:
+          type: string
+        lender_id:
+          type: string
+        status:
+          type: string
+        note:
+          type: string
+        repayment_date:
+          type: string
+        interest_rate:
+          type: string
+        created_at:
+          type: string
+        updated_at:
+          type: string
+    Product:
+      title: Product
+      type: object
+      properties:
+        id:
+          type: string
+  responses:
+    GenericResponse:
+      description: Example response
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+              status:
+                type: string
+              data:
+                type: string
+  requestBodies: {}
+  parameters: {}
+security:
+  - ApiKeyAuth: []
+tags:
+  - name: taxonomy
+  - name: product
+  - name: voucher
+  - name: user
