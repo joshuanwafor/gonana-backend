@@ -18,11 +18,11 @@ export class TaxonomyModel {
 
 
   @Name("name")
-  @Description("The name of the event")
+  @Description("")
   name: string;
 
   @Property()
-  @Description("Description the event")
+  @Description("")
   description: string;
 
   @Property()

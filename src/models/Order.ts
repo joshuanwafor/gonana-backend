@@ -9,23 +9,23 @@ export class TransactionModel {
   _id: string;
 
   @Property()
-  @Description("Creation's date")
+  @Description("")
   created_at: Date = new Date();
 
   @Property()
-  @Description("Last modification date")
+  @Description("")
   updated_at: Date = new Date();
 
   @Name("buyer-email")
-  @Description("Buyer phone")
+  @Description("")
   buyer_email: string;
 
   @Name("buyer-phone")
-  @Description("Buyer email")
+  @Description("")
   buyer_phone: string;
 
   @Name("project-id")
-  @Description("Buyer email")
+  @Description("")
   project_id: string;
 
   @Name("merchant-id")
@@ -33,23 +33,23 @@ export class TransactionModel {
   merchant_id: string;
 
   @Property()
-  @Description("Order description")
+  @Description("")
   description: string;
 
   @Property()
-  @Description("pending | paid | completed")
+  @Description("")
   status: string;
 
   @Property()
-  @Description("Transaction ref")
+  @Description("")
   transaction_ref: string;
 
   @Property()
-  @Description("Project status")
+  @Description("")
   amount: number;
 
   @Property()
-  @Description("Project status")
+  @Description("")
   details: any;
 
 }

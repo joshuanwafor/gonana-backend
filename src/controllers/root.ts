@@ -1,8 +1,6 @@
 import { BodyParams, Controller, Delete, Get, Post, Put, QueryParams, Req, Res, UseAuth } from "@tsed/common";
 import { TransactionService } from "../services/transactions";
-import { AuthMiddleware } from "../middlewares/auth";
 import { AuthService } from "../services/auth";
-import { ProjectService } from "../services/projects/ProjectService";
 
 @Controller({
   path: "/",

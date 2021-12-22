@@ -1,24 +1,15 @@
-import {$log} from "@tsed/common";
-import {PlatformExpress} from "@tsed/platform-express";
-import {Server} from "./Server";
-import * as admin from 'firebase-admin';
-
-
-
+import { $log } from "@tsed/common";
+import { PlatformExpress } from "@tsed/platform-express";
+import { Server } from "./Server";
+import * as admin from "firebase-admin";
 
 function init_firebase() {
-
-
-
-  var serviceAccountFile = require("../finally-xyz-firebase-adminsdk-htuq5-3a56e08458.json");
+  var serviceAccountFile = require("../firebase-sec-key.json");
 
   admin.initializeApp({
-    credential: admin.credential.cert(serviceAccountFile)
+    credential: admin.credential.cert(serviceAccountFile),
   });
-
-
 }
-
 
 async function bootstrap() {
   try {

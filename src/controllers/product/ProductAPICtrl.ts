@@ -1,17 +1,26 @@
-import { BodyParams, Controller, Delete, Get, PathParams, Post, Put, Res, UseAuth } from "@tsed/common";
+import {
+  BodyParams,
+  Controller,
+  Delete,
+  Get,
+  PathParams,
+  Post,
+  Put,
+  Res,
+  UseAuth,
+} from "@tsed/common";
+import { ProductService } from "src/services/product/ProductService";
 import { AuthMiddleware } from "../../middlewares/auth";
 import { AuthService } from "../../services/auth";
-import { ProjectService } from "../../services/projects/ProjectService";
 
 @Controller({
   path: "/projects",
 })
-
-export class ProjectCtrl {
-  constructor(private service: ProjectService, private authService: AuthService) {
-
-  }
-
+export class ProductCtrl {
+  constructor(
+    private service: ProductService,
+    private authService: AuthService
+  ) {}
 
   @Get("/")
   @UseAuth(AuthMiddleware)
@@ -23,7 +32,7 @@ export class ProjectCtrl {
   @UseAuth(AuthMiddleware)
   async postProject(@BodyParams() body: any) {
     body.creator_id = this.authService.user_id;
-    return await this.service.save(body)
+    return await this.service.save(body);
   }
 
   @Get("/:projectID")
@@ -34,21 +43,21 @@ export class ProjectCtrl {
 
   @Put("/:projectID")
   @UseAuth(AuthMiddleware)
-  async updateProject(@BodyParams() body: any, @PathParams("projectID") projectID: string) {
+  async updateProject(
+    @BodyParams() body: any,
+    @PathParams("projectID") projectID: string
+  ) {
     body._id = projectID;
     console.log(projectID);
     try {
       await this.service.save(body);
       return true;
-    } catch (e) {
-
-    }
+    } catch (e) {}
   }
 
   @Delete("/:projectID")
   @UseAuth(AuthMiddleware)
   async deleteProject() {
-    return await this.service.remove("d")
+    return await this.service.remove("d");
   }
-
 }
