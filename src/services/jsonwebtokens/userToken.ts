@@ -12,7 +12,7 @@ export class JWTService {
 
      generateUserToken(user: User): { token: any } {
         $log.debug("generating token for ", user);
-        let pack = { _id: user._id.toString(), email: user.email, name: user.fullname, fuid: user.fuid };
+        let pack = { _id: user._id.toString(), email: user.email,  fuid: user.fuid };
 
         var token = jwt.sign(pack, { key: privateKey, passphrase: "15June199815June1998.." }, {
             algorithm: 'RS256'

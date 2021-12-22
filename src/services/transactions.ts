@@ -35,7 +35,7 @@ export class TransactionService {
         project_id
       );
       let project = await this.productService.find(project_id);
-      let merchant = await this.userService.find(project.creator_id);
+      let merchant = await this.userService.find(project.publisher_id);
 
       if (merchant == null || project == null) {
         console.log(project, merchant);
@@ -54,7 +54,7 @@ export class TransactionService {
       let tempT: TransactionModel = {
         amount: 1,
         buyer_email: buyer_email,
-        merchant_id: project.creator_id,
+        merchant_id: project.publisher_id,
         transaction_ref: ref,
         details: paystack_trans_det,
       };
