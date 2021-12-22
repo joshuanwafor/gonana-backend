@@ -12,7 +12,7 @@ export class LoanServiceModel {
 
   @Property()
   @Description("")
-  creator_id: string;
+  voucher_id: string;
 
   @Name("created_at")
   @Property()

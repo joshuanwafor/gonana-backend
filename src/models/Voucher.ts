@@ -12,7 +12,7 @@ export class VoucherModel {
 
   @Property()
   @Description("")
-  creator_id: string;
+  publisher_id: string;
 
   @Name("created_at")
   @Property()

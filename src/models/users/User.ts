@@ -1,101 +1,113 @@
-import { } from "@tsed/common";
-import { Model,  Schema } from "@tsed/mongoose";
+import {} from "@tsed/common";
+import { Model, Schema } from "@tsed/mongoose";
 import { Required, Name, Property, CollectionOf } from "@tsed/schema";
 
 @Schema()
 class PaystackBankIntegrationSchema {
-    @Property()
-    business_name: string;
+  @Property()
+  business_name: string;
 
-    @Property()
-    account_number: string;
+  @Property()
+  account_number: string;
 
-    @Property()
-    percentage_charge: Number;
+  @Property()
+  percentage_charge: Number;
 
-    @Property()
-    settlement_bank: string;
+  @Property()
+  settlement_bank: string;
 
-    @Property()
-    currency: string;
+  @Property()
+  currency: string;
 
-    @Property()
-    bank: Number;
+  @Property()
+  bank: Number;
 
-    @Property()
-    integration: Number;
+  @Property()
+  integration: Number;
 
-    @Property()
-    domain: string;
+  @Property()
+  domain: string;
 
-    @Property()
-    subaccount_code: string;
+  @Property()
+  subaccount_code: string;
 
-    @Property()
-    is_verified: boolean;
+  @Property()
+  is_verified: boolean;
 
-    @Property()
-    settlement_schedule: string;
+  @Property()
+  settlement_schedule: string;
 
-    @Property()
-    active: boolean;
+  @Property()
+  active: boolean;
 
-    @Property()
-    migrate: boolean;
+  @Property()
+  migrate: boolean;
 
-    @Property()
-    id: Number;
+  @Property()
+  id: Number;
 
-    @Property()
-    createdAt: string;
+  @Property()
+  createdAt: string;
 
-    @Property()
-    updatedAt: string;
+  @Property()
+  updatedAt: string;
 }
 
-@Model({ schemaOptions: { timestamps: true }, })
+@Model({ schemaOptions: { timestamps: true } })
 export class User {
+  @Name("id")
+  _id: string;
 
-    @Name("id")
-    _id: string;
+  @Name("created_at")
+  @Property()
+  createdAt: any;
 
-    @Name("created_at")
-    @Property()
-    createdAt: any;
+  @Name("updated_at")
+  @Property()
+  updatedAt: any;
 
-    @Name("updated_at")
-    @Property()
-    updatedAt: any;
+  @Property()
+  first_name: string;
 
-    @Property()
-    fullname: string;
+  @Property()
+  last_name: string;
 
-    @Property()
-    email: string;
+  @Property()
+  bio: string;
 
-    @Property()
-    phone: string;
+  @Property()
+  verified: boolean;
 
-    @Property()
-    verified: boolean;
+  @Name("fuid")
+  @Required()
+  @Property()
+  fuid: string;
+
+  @Property()
+  email: string;
+
+  @Property()
+  phone: string;
+
+  @Property()
+  account_status: string;
+
+  @Property()
+  photo: string;
+
+  @CollectionOf(PaystackBankIntegrationSchema)
+  @Property()
+  paystack_bank_integration: PaystackBankIntegrationSchema;
 
 
-    @Property()
-    activated: string;
+  @Property()
+  address:  Address;
+}
 
-    @Property()
-    bio: string;
-
-    @Name("fuid")
-    @Required()
-    @Property()
-    fuid: string;
-
-    @Property()
-    photo: string;
-
-    @CollectionOf(PaystackBankIntegrationSchema)
-    @Property()
-    paystack_bank_integration: PaystackBankIntegrationSchema;
-
+@Schema()
+class Address {
+  country: string;
+  state: string;
+  street: string;
+  zip_code: string;
 }

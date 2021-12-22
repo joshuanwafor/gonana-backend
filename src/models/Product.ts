@@ -12,7 +12,7 @@ export class ProductModel {
 
   @Property()
   @Description("")
-  creator_id: string;
+  publisher_id: string;
 
   @Name("created_at")
   @Property()
@@ -21,4 +21,35 @@ export class ProductModel {
   @Name("updated_at")
   @Property()
   updatedAt: any;
+
+  @Description("")
+  @Property()
+  title: string;
+
+  @Property()
+  caption: string;
+
+  @Property()
+  body: string;
+
+  @Property()
+  tags: string[];
+
+  @Property()
+  status: string;
+
+  @Property()
+  audience_type: string;
+
+  @Property()
+  @Description("Project status")
+  categories: string[];
+
+  @Property()
+  @Description("ownr")
+  downloads_count: number;
+
+  @Property()
+  @Description("Price")
+  price: number;
 }

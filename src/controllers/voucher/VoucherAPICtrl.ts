@@ -9,54 +9,48 @@ import {
   Res,
   UseAuth,
 } from "@tsed/common";
-import { ProductService } from "src/services/product/ProductService";
+import { VoucherService } from "src/services/voucher/VoucherService";
 import { AuthMiddleware } from "../../middlewares/auth";
 import { AuthService } from "../../services/auth";
 
 @Controller({
-  path: "/projects",
+  path: "/voucher",
 })
-export class ProductCtrl {
+export class VoucherCtrl {
   constructor(
-    private service: ProductService,
+    private service: VoucherService,
     private authService: AuthService
   ) {}
 
   @Get("/")
   @UseAuth(AuthMiddleware)
-  async getProjects() {
+  async getUserVouchers() {
     return this.service.query({ publisher_id: this.authService.user_id });
   }
 
-  @Post("")
+  @Post("/")
   @UseAuth(AuthMiddleware)
-  async postProject(@BodyParams() body: any) {
+  async postVoucher(@BodyParams() body: any) {
     body.publisher_id = this.authService.user_id;
     return await this.service.save(body);
   }
 
-  @Get("/:productID")
+  @Get("/:itemID")
   @UseAuth(AuthMiddleware)
-  async getProject(@PathParams("productID") productID: string) {
-    return await this.service.find(productID);
+  async getVoucher(@PathParams("itemID") itemID: string) {
+    return await this.service.find(itemID);
   }
 
-  @Put("/:productID")
+  @Put("/:itemID")
   @UseAuth(AuthMiddleware)
-  async updateProject(
+  async updateVoucher(
     @BodyParams() body: any,
-    @PathParams("productID") productID: string
+    @PathParams("itemID") itemID: string
   ) {
-    body._id = productID;
+    body._id = itemID;
     try {
       await this.service.save(body);
       return true;
     } catch (e) {}
-  }
-
-  @Delete("/:productID")
-  @UseAuth(AuthMiddleware)
-  async deleteProject(@PathParams("productID") productID: string) {
-    return await this.service.remove(productID);
   }
 }
