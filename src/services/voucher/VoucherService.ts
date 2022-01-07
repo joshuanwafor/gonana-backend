@@ -1,7 +1,7 @@
 import { Inject, Service } from "@tsed/common";
 import { MongooseModel } from "@tsed/mongoose";
 import { $log } from "@tsed/logger";
-import { VoucherModel } from "src/models/Voucher";
+import { VoucherModel } from "../../models/Voucher";
 
 @Service()
 export class VoucherService {

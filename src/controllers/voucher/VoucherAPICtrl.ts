@@ -9,7 +9,7 @@ import {
   Res,
   UseAuth,
 } from "@tsed/common";
-import { VoucherService } from "src/services/voucher/VoucherService";
+import { VoucherService } from "../../services/voucher/VoucherService";
 import { AuthMiddleware } from "../../middlewares/auth";
 import { AuthService } from "../../services/auth";
 

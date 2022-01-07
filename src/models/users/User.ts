@@ -53,6 +53,17 @@ class PaystackBankIntegrationSchema {
   updatedAt: string;
 }
 
+
+@Schema()
+class Address {
+  country: string;
+  state: string;
+  street: string;
+  zip_code: string;
+}
+
+
+
 @Model({ schemaOptions: { timestamps: true } })
 export class User {
   @Name("id")
@@ -104,10 +115,3 @@ export class User {
   address:  Address;
 }
 
-@Schema()
-class Address {
-  country: string;
-  state: string;
-  street: string;
-  zip_code: string;
-}
