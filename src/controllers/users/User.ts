@@ -67,6 +67,7 @@ export class UserCtrl {
     @BodyParams() body: any): Promise<User> {
     body.id = this.authService.user_id;
     body._id = this.authService.user_id;
+    console.log(body, " to update")
     return this.userService.save(body);
   }
 }
