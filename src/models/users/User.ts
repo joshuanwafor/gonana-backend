@@ -53,7 +53,6 @@ class PaystackBankIntegrationSchema {
   updatedAt: string;
 }
 
-
 @Schema()
 class Address {
   country: string;
@@ -61,8 +60,6 @@ class Address {
   street: string;
   zip_code: string;
 }
-
-
 
 @Model({ schemaOptions: { timestamps: true } })
 export class User {
@@ -89,6 +86,11 @@ export class User {
   @Property()
   verified: boolean;
 
+  @Property()
+  isProvider: boolean;
+  @Property()
+  isBank: boolean;
+
   @Name("fuid")
   @Required()
   @Property()
@@ -110,8 +112,6 @@ export class User {
   @Property()
   paystack_bank_integration: PaystackBankIntegrationSchema;
 
-
   @Property()
-  address:  Address;
+  address: Address;
 }
-

@@ -3,8 +3,8 @@ import { Required, Name, Description, Property, Enum } from "@tsed/schema";
 import { Model, Ref } from "@tsed/mongoose";
 
 @Model({
-  schemaOptions: { timestamps: true, collection: "loan-services" },
-  collection: "loan-services",
+  schemaOptions: { timestamps: true, collection: "loan-service" },
+  collection: "loan-service",
 })
 export class LoanServiceModel {
   @Name("id")
