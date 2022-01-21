@@ -14,7 +14,7 @@ import { AuthMiddleware } from "../../middlewares/auth";
 import { AuthService } from "../../services/auth";
 
 @Controller({
-  path: "/projects",
+  path: "/products",
 })
 export class ProductCtrl {
   constructor(
@@ -24,26 +24,26 @@ export class ProductCtrl {
 
   @Get("/")
   @UseAuth(AuthMiddleware)
-  async getProjects() {
+  async getProducts() {
     return this.service.query({ publisher_id: this.authService.user_id });
   }
 
   @Post("")
   @UseAuth(AuthMiddleware)
-  async postProject(@BodyParams() body: any) {
+  async postProduct(@BodyParams() body: any) {
     body.publisher_id = this.authService.user_id;
     return await this.service.save(body);
   }
 
   @Get("/:productID")
   @UseAuth(AuthMiddleware)
-  async getProject(@PathParams("productID") productID: string) {
+  async getProduct(@PathParams("productID") productID: string) {
     return await this.service.find(productID);
   }
 
   @Put("/:productID")
   @UseAuth(AuthMiddleware)
-  async updateProject(
+  async updateProduct(
     @BodyParams() body: any,
     @PathParams("productID") productID: string
   ) {
@@ -56,7 +56,7 @@ export class ProductCtrl {
 
   @Delete("/:productID")
   @UseAuth(AuthMiddleware)
-  async deleteProject(@PathParams("productID") productID: string) {
+  async deleteProduct(@PathParams("productID") productID: string) {
     return await this.service.remove(productID);
   }
 }

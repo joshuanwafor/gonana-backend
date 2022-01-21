@@ -3,8 +3,8 @@ import { Required, Name, Description, Property } from "@tsed/schema";
 import { Model, Ref } from "@tsed/mongoose";
 
 @Model({
-  schemaOptions: { timestamps: true, collection: "vouchers" },
-  collection: "vouchers",
+  schemaOptions: { timestamps: true, collection: "product" },
+  collection: "product",
 })
 export class ProductModel {
   @Name("id")
@@ -33,23 +33,28 @@ export class ProductModel {
   body: string;
 
   @Property()
-  tags: string[];
+  tags: string;
 
   @Property()
   status: string;
 
   @Property()
-  audience_type: string;
-
-  @Property()
-  @Description("Project status")
+  @Description("")
   categories: string[];
 
   @Property()
-  @Description("ownr")
-  downloads_count: number;
+  @Description("")
+  price: number;
 
   @Property()
-  @Description("Price")
-  price: number;
+  @Description("")
+  quantity: number;
+
+  @Property()
+  @Description("")
+  approved: boolean;
+
+  @Property()
+  @Description("")
+  type: string;
 }

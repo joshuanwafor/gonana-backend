@@ -1,4 +1,4 @@
-import { Required, Name, Description, Property } from "@tsed/schema";
+import { Required, Name, Description, Property, Enum } from "@tsed/schema";
 
 import { Model, Ref } from "@tsed/mongoose";
 
@@ -13,6 +13,32 @@ export class LoanServiceModel {
   @Property()
   @Description("")
   voucher_id: string;
+
+  @Property()
+  @Description("")
+  farmer_id: string;
+
+  @Property()
+  @Description("")
+  service_id: string;
+
+  @Property()
+  @Description("")
+  provider_id: string;
+
+  @Property()
+  @Description("")
+  note: string;
+
+  @Property()
+  @Description("")
+  @Enum(["pending", "processing", "completed"])
+  status: string;
+
+  @Property()
+  @Description("")
+  @Enum(["pending", "processing", "completed"])
+  provider_status: string;
 
   @Name("created_at")
   @Property()

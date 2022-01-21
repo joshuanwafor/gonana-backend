@@ -14,6 +14,10 @@ export class VoucherModel {
   @Description("")
   publisher_id: string;
 
+  @Property()
+  @Description("")
+  farmer_id: string;
+
   @Name("created_at")
   @Property()
   createdAt: any;
