@@ -1,6 +1,6 @@
 import { Inject, Service } from "@tsed/di";
 import { MongooseModel } from "@tsed/mongoose";
-import { TransactionModel } from "../models/Order";
+import { OrderModel, TransactionModel} from "../models/Order";
 import { PaystackActions } from "./paystack/paystackAPIActions";
 import { PaystackService } from "./paystack/sumbitBankInfo";
 import { ProductService } from "./product/ProductService";

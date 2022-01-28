@@ -12,14 +12,21 @@ import {
 import { VoucherService } from "../../services/voucher/VoucherService";
 import { AuthMiddleware } from "../../middlewares/auth";
 import { AuthService } from "../../services/auth";
+import {
+  NewVoucher,
+  VoucherModel,
+  VoucherServiceAttach,
+} from "../../models/Voucher";
+import { OrderService } from "../../services/order-service";
 
 @Controller({
-  path: "/voucher",
+  path: "/vouchers",
 })
 export class VoucherCtrl {
   constructor(
     private service: VoucherService,
-    private authService: AuthService
+    private authService: AuthService,
+    private orderService: OrderService
   ) {}
 
   @Get("/")
@@ -30,9 +37,29 @@ export class VoucherCtrl {
 
   @Post("/")
   @UseAuth(AuthMiddleware)
-  async postVoucher(@BodyParams() body: any) {
-    body.publisher_id = this.authService.user_id;
-    return await this.service.save(body);
+  async postVoucher(@BodyParams() body: NewVoucher) {
+    let services = body.services;
+
+    let voucherObj: VoucherModel = {
+      description: body.description,
+      interest_rate: body.interest_rate,
+      repayment_date: body.repayment_date,
+      type: "loan",
+      publisher_id: this.authService.user_id,
+      farmer_id: this.authService.user_id,
+      status: body.status,
+    };
+
+    try {
+      // save voucher info
+      let createdVoucher = await this.service.save(voucherObj);
+      // attach voucher services if provided
+      let res = await this.orderService.saveVoucherOrders(createdVoucher, body);
+
+      return await this.service.getWithServices(createdVoucher._id);
+    } catch (e) {
+      throw e;
+    }
   }
 
   @Get("/:itemID")

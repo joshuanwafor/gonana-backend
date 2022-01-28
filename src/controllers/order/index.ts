@@ -11,21 +11,24 @@ import {
 } from "@tsed/common";
 import { AuthMiddleware } from "../../middlewares/auth";
 import { AuthService } from "../../services/auth";
-import { LoanService } from "src/services/load-service/loan-service";
+import { OrderService } from "../../services/order-service";
 
 @Controller({
-  path: "/loan-service",
+  path: "/orders",
 })
-export class LoanServiceCtrl {
-  constructor(private service: LoanService, private authService: AuthService) {}
+class Ctrl {
+  constructor(
+    private service: OrderService,
+    private authService: AuthService
+  ) {}
 
-  @Get("/pro")
+  @Get("/provider")
   @UseAuth(AuthMiddleware)
   async getProviderLoanService() {
     return await this.service.query({ provider_id: this.authService.user_id });
   }
 
-  @Get("/far")
+  @Get("/farmer")
   @UseAuth(AuthMiddleware)
   async getFarmerLoanService() {
     return await this.service.query({ farmer_id: this.authService.user_id });
