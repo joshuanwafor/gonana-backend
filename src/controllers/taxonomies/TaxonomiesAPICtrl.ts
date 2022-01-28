@@ -1,5 +1,5 @@
 import { BodyParams, Controller, Delete, Get, PathParams, Post, Put, UseAuth } from "@tsed/common";
-import { TaxonomyService } from "../../services/taxonomies/TaxonomyService";
+import { TaxonomyService } from "../../services/taxonomy/taxonomy-service";
 import { AuthService } from "../../services/auth";
 
 @Controller({

@@ -2,7 +2,7 @@ import { Inject, Service } from "@tsed/common";
 import { MongooseModel } from "@tsed/mongoose";
 import { $log } from "@tsed/logger";
 
-import { ProductModel } from "../../models/Product";
+import { ProductModel } from "../../models/product/product";
 
 @Service()
 export class ProductService {

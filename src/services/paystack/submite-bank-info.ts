@@ -1,10 +1,10 @@
 import { Inject, Service } from "@tsed/common";
 import { MongooseModel } from "@tsed/mongoose";
 import { $log } from "@tsed/logger";
-import { User } from "../../models/users/User";
+import { User } from "../../models/users/user";
 import { Required } from "@tsed/schema";
 import axios from "axios";
-import { PaystackActions } from "./paystackAPIActions";
+import { PaystackActions } from "./paystack-actions";
 const SEC_KEY = "Bearer sk_live_b5592eabd7d3ca30737be9859586999fe6d76231";
 
 let paystackActions = new PaystackActions();

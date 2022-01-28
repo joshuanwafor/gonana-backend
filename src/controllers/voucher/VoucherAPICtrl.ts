@@ -1,7 +1,6 @@
 import {
   BodyParams,
   Controller,
-  Delete,
   Get,
   PathParams,
   Post,
@@ -9,14 +8,14 @@ import {
   Res,
   UseAuth,
 } from "@tsed/common";
-import { VoucherService } from "../../services/voucher/VoucherService";
+import { VoucherService } from "../../services/voucher/voucher-service";
 import { AuthMiddleware } from "../../middlewares/auth";
 import { AuthService } from "../../services/auth";
 import {
   NewVoucher,
   VoucherModel,
   VoucherServiceAttach,
-} from "../../models/Voucher";
+} from "../../models/voucher/voucher";
 import { OrderService } from "../../services/order-service";
 
 @Controller({
@@ -65,7 +64,7 @@ export class VoucherCtrl {
   @Get("/:itemID")
   @UseAuth(AuthMiddleware)
   async getVoucher(@PathParams("itemID") itemID: string) {
-    return await this.service.find(itemID);
+    return await this.service.getWithServices(itemID);
   }
 
   @Put("/:itemID")

@@ -755,6 +755,13 @@
     chalk "4.1.0"
     tslib "2.2.0"
 
+"@tsed/event-emitter@^6.98.3":
+  version "6.98.3"
+  resolved "https://registry.yarnpkg.com/@tsed/event-emitter/-/event-emitter-6.98.3.tgz#b9c622d09368040967077f90903dfa8a4b1857ea"
+  integrity sha512-Mu9idDMTOmwZxSjVR3G8QQMsMIhpgdfiejFsdmTGYvwc2MDiLomX3xD+JxjyRJINSNl8Cgi0Jqh9MYHLtV8dsw==
+  dependencies:
+    tslib "2.2.0"
+
 "@tsed/exceptions@6.75.11":
   version "6.75.11"
   resolved "https://registry.yarnpkg.com/@tsed/exceptions/-/exceptions-6.75.11.tgz#113496120f2031b26de9b0df993db5bac0e2a74e"
@@ -2510,6 +2517,11 @@ event-target-shim@^5.0.0:
   version "5.0.1"
   resolved "https://registry.yarnpkg.com/event-target-shim/-/event-target-shim-5.0.1.tgz#5d4d3ebdf9583d63a5333ce2deb7480ab2b05789"
   integrity sha512-i/2XbnSz/uxRCU6+NdVJgKWDTM427+MqYbkQzD321DuCQJUqOuJKIA0IM2+W2xtYHdKOmZ4dR6fExsd4SXL+WQ==
+
+eventemitter2@^6.4.5:
+  version "6.4.5"
+  resolved "https://registry.yarnpkg.com/eventemitter2/-/eventemitter2-6.4.5.tgz#97380f758ae24ac15df8353e0cc27f8b95644655"
+  integrity sha512-bXE7Dyc1i6oQElDG0jMRZJrRAn9QR2xyyFGmBdZleNmyQX0FqGYmhZIrIrpPfm/w//LTo4tVQGOGQcGCb5q9uw==
 
 execa@^0.7.0:
   version "0.7.0"

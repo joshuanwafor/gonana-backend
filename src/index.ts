@@ -1,6 +1,7 @@
 import { $log } from "@tsed/common";
 import { PlatformExpress } from "@tsed/platform-express";
 import { Server } from "./Server";
+
 import * as admin from "firebase-admin";
 
 function init_firebase() {

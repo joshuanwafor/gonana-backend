@@ -1,9 +1,9 @@
 import { BodyParams, Controller, Delete, Get, PathParams, Post, Put } from "@tsed/common";
 import { NotFound } from "@tsed/exceptions";
-import { UserService } from '../../services/users/UserService';
-import { User } from '../../models/users/User';
+import { UserService } from '../../services/users/user-service';
+import { User } from '../../models/users/user';
 import { FirebaseAuth } from "../../services/firebase/auth";
-import { CreateAccountForm, PaystackService } from '../../services/paystack/sumbitBankInfo';
+import { CreateAccountForm, PaystackService } from '../../services/paystack/submite-bank-info';
 
 
 @Controller({

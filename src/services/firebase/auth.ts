@@ -1,9 +1,9 @@
 import { Inject, Service } from "@tsed/common";
 import { MongooseModel } from "@tsed/mongoose";
-import { User } from '../../models/users/User';
+import { User } from '../../models/users/user';
 import { JWTService } from "../jsonwebtokens/userToken";
 import firebase from "firebase-admin";
-import { UserService } from "../users/UserService";
+import { UserService } from "../users/user-service";
 
 @Service()
 export class FirebaseAuth {

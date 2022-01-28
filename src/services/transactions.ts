@@ -1,10 +1,10 @@
 import { Inject, Service } from "@tsed/di";
 import { MongooseModel } from "@tsed/mongoose";
-import { OrderModel, TransactionModel} from "../models/Order";
-import { PaystackActions } from "./paystack/paystackAPIActions";
-import { PaystackService } from "./paystack/sumbitBankInfo";
-import { ProductService } from "./product/ProductService";
-import { UserService } from "./users/UserService";
+import { OrderModel, TransactionModel} from "../models/order/order";
+import { PaystackActions } from "./paystack/paystack-actions";
+import { PaystackService } from "./paystack/submite-bank-info";
+import { ProductService } from "./product/product-service";
+import { UserService } from "./users/user-service";
 
 const paystackService = new PaystackService();
 

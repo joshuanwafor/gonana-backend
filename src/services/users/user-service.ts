@@ -1,20 +1,19 @@
 import { Inject, Service } from "@tsed/common";
 import { MongooseModel } from "@tsed/mongoose";
 import { $log } from "@tsed/logger";
-import { User } from '../../models/users/User';
+import { User } from "../../models/users/user";
+import { EventEmitterService } from "@tsed/event-emitter";
 
 @Service()
 export class UserService {
+  @Inject()
+  private eventEmitter: EventEmitterService;
+
   @Inject(User)
   private User: MongooseModel<User>;
-  $onInit() {
-  }
+  $onInit() {}
   async find(id: string): Promise<User> {
-    console.log(id ,"----ID goes here")
-    $log.debug("Search a user from ID", id);
     const user = await this.User.findById(id).exec();
-
-    $log.debug("Found", user);
     return user;
   }
   async save(user: any): Promise<User> {
@@ -22,12 +21,23 @@ export class UserService {
 
     await model.updateOne(user, { upsert: true });
 
+    if (user.id == undefined) {
+      // emit user create event
+      this.eventEmitter.emit("user.created", model);
+    } else {
+      // emit user update event
+      this.eventEmitter.emit("user.updated", model);
+    }
+
     return model;
   }
   async query(options = {}): Promise<User[]> {
     return this.User.find(options).exec();
   }
   async remove(id: string): Promise<User> {
-    return await this.User.findById(id).remove().exec();
+    let res = await this.User.findById(id).remove().exec();
+    // emit delete event
+    this.eventEmitter.emit("user.deleted", id);
+    return res;
   }
 }
