@@ -1,19 +1,18 @@
 import { Inject, Service } from "@tsed/common";
 import { MongooseModel } from "@tsed/mongoose";
-import { $log } from "@tsed/logger";
-import { CourseModel } from "../../models/course/course";
+import { ResourceModel } from "../../models/resource/resource";
 
 @Service()
-export class CourseService {
-  @Inject(CourseModel)
-  model: MongooseModel<CourseModel>;
+export class ResourceService {
+  @Inject(ResourceModel)
+  model: MongooseModel<ResourceModel>;
 
-  async find(id: string): Promise<CourseModel> {
+  async find(id: string): Promise<ResourceModel> {
     const item = await this.model.findById(id).exec();
     return item;
   }
 
-  async save(item: CourseModel): Promise<CourseModel> {
+  async save(item: ResourceModel): Promise<ResourceModel> {
     const model = new this.model(item);
 
     await model.updateOne(item, { upsert: true });
@@ -25,11 +24,11 @@ export class CourseService {
     return model;
   }
 
-  async query(options = {}): Promise<CourseModel[]> {
+  async query(options = {}): Promise<ResourceModel[]> {
     return this.model.find(options).exec();
   }
 
-  async remove(id: string): Promise<CourseModel> {
+  async remove(id: string): Promise<ResourceModel> {
     return await this.model.findById(id).remove().exec();
   }
 }

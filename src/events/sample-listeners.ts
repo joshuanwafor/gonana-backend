@@ -3,8 +3,6 @@ import { OnEvent } from "@tsed/event-emitter";
 import { User } from "../models/users/user";
 import { EVENT_TYPES } from "../events/index";
 
-
-
 @Injectable()
 export class TestEventListener {
   @OnEvent("test-event")

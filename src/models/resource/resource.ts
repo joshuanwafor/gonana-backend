@@ -31,8 +31,8 @@ class MediaAttachment {
 }
 
 @Model({
-  schemaOptions: { timestamps: true, collection: "course" },
-  collection: "course",
+  schemaOptions: { timestamps: true, collection: "resources" },
+  collection: "resources",
 })
 export class ResourceModel {
   @Name("id")
@@ -49,6 +49,10 @@ export class ResourceModel {
   @Property()
   @Description("")
   publisher_id: string;
+
+  @Property()
+  @Description("")
+  course_id: string;
 
   @Property()
   @Description("")
