@@ -33,7 +33,7 @@ export class CoursesCtrl {
   @Post("")
   @UseAuth(AuthMiddleware)
   async post(@BodyParams() body: any) {
-    body.course_code= shortid.generate();
+    body.course_code= require("shortid").generate();
     body.publisher_id = this.authService.user_id;
     return await this.service.save(body);
   }
