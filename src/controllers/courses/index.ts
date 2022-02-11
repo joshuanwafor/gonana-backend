@@ -10,7 +10,7 @@ import {
   UseAuth,
 } from "@tsed/common";
 import { ProductService } from "../../services/product/product-service";
-import shortid from "shortid"
+import shortid from "shortid";
 import { AuthMiddleware } from "../../middlewares/auth";
 import { AuthService } from "../../services/auth";
 import { CourseService } from "../../services/course/course-service";
@@ -33,7 +33,7 @@ export class CoursesCtrl {
   @Post("")
   @UseAuth(AuthMiddleware)
   async post(@BodyParams() body: any) {
-    body.course_code= require("shortid").generate();
+    body.course_code = require("shortid").generate();
     body.publisher_id = this.authService.user_id;
     return await this.service.save(body);
   }
