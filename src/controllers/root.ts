@@ -11,7 +11,7 @@ import {
   Res,
   UseAuth,
 } from "@tsed/common";
-import { CourseService } from "../services/course/course-service";
+import { SpaceService } from "../services/space";
 import { ResourceService } from "../services/resource/resource-service";
 
 @Controller({
@@ -19,16 +19,16 @@ import { ResourceService } from "../services/resource/resource-service";
 })
 export class RootCtrl {
   constructor(
-    private service: CourseService,
+    private service: SpaceService,
     private resources_service: ResourceService
   ) {}
 
-  @Get("/courses")
+  @Get("/spaces")
   async get() {
     return await this.service.query({});
   }
 
-  @Get("/courses/:id")
+  @Get("/spaces/:id")
   async getCourseInfo(@PathParams("id") id: string) {
     const course = await this.service.find(id);
     return course;

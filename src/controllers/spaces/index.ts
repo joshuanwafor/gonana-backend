@@ -12,14 +12,14 @@ import {
 import shortid from "shortid";
 import { AuthMiddleware } from "../../middlewares/auth";
 import { AuthService } from "../../services/auth";
-import { CourseService } from "../../services/course/course-service";
+import { SpaceService } from "../../services/space";
 
 @Controller({
-  path: "/courses",
+  path: "/spaces",
 })
-export class CoursesCtrl {
+export class SpacesCtrl {
   constructor(
-    private service: CourseService,
+    private service: SpaceService,
     private authService: AuthService
   ) {}
 

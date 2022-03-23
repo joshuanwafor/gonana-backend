@@ -3,10 +3,10 @@ import { Required, Name, Description, Property } from "@tsed/schema";
 import { Model, Ref } from "@tsed/mongoose";
 
 @Model({
-  schemaOptions: { timestamps: true, collection: "course" },
-  collection: "course",
+  schemaOptions: { timestamps: true, collection: "spaces" },
+  collection: "spaces",
 })
-export class CourseModel {
+export class SpaceModel {
   @Name("id")
   _id: string;
 
