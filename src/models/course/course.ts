@@ -24,7 +24,7 @@ export class CourseModel {
 
   @Property()
   @Description("")
-  course_code: string;
+  code: string;
 
   @Description("")
   @Property()
@@ -33,9 +33,7 @@ export class CourseModel {
   @Property()
   body: string;
 
-  @Property()
-  abstract: string;
-
+ 
   @Property()
   status: string;
 
@@ -45,13 +43,5 @@ export class CourseModel {
 
   @Property()
   @Description("")
-  type: string;
-
-  @Property()
-  @Description("")
   photo: string;
-
-  @Property()
-  @Description("")
-  cover_photo: string;
 }

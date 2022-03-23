@@ -21,7 +21,6 @@ export class OrderModel {
 
   // Primary info
 
-  
   @Description("")
   @Enum(["voucher", "marketplace"])
   @Property()

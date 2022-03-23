@@ -31,11 +31,7 @@ export class RootCtrl {
   @Get("/courses/:id")
   async getCourseInfo(@PathParams("id") id: string) {
     const course = await this.service.find(id);
-    const resources = await this.resources_service.query({ course_id: id });
-    return {
-      course: course,
-      resources: resources,
-    };
+    return course;
   }
 
   @Get("/resources")

@@ -53,14 +53,6 @@ class PaystackBankIntegrationSchema {
   updatedAt: string;
 }
 
-@Schema()
-class Address {
-  country: string;
-  state: string;
-  street: string;
-  zip_code: string;
-}
-
 @Model({ schemaOptions: { timestamps: true } })
 export class User {
   @Name("id")
@@ -75,21 +67,13 @@ export class User {
   updatedAt: any;
 
   @Property()
-  first_name: string;
-
-  @Property()
-  last_name: string;
+  fullname: string;
 
   @Property()
   bio: string;
 
   @Property()
   verified: boolean;
-
-  @Property()
-  isProvider: boolean;
-  @Property()
-  isBank: boolean;
 
   @Name("fuid")
   @Required()
@@ -111,7 +95,4 @@ export class User {
   @CollectionOf(PaystackBankIntegrationSchema)
   @Property()
   paystack_bank_integration: PaystackBankIntegrationSchema;
-
-  @Property()
-  address: Address;
 }

@@ -9,7 +9,6 @@ import {
   Res,
   UseAuth,
 } from "@tsed/common";
-import { ProductService } from "../../services/product/product-service";
 import shortid from "shortid";
 import { AuthMiddleware } from "../../middlewares/auth";
 import { AuthService } from "../../services/auth";

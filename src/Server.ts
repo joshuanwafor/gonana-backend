@@ -25,7 +25,7 @@ console.log(__dirname);
   mongoose: {
     url:
       process.env.mongoose_url ||
-      "mongodb://127.0.0.1:27017/example-mongoose-test",
+      "mongodb://127.0.0.1:27017/vspaces",
     connectionOptions: {
       useNewUrlParser: true,
       useUnifiedTopology: true,
