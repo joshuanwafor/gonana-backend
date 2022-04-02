@@ -34,11 +34,6 @@ export class RootCtrl {
     return course;
   }
 
-  @Get("/resources")
-  async getResources() {
-    return await this.resources_service.query({});
-  }
-
   @Post("/make-payment")
   async purchaseProject(
     @Res() res: Res,

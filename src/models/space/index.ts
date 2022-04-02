@@ -44,4 +44,8 @@ export class SpaceModel {
   @Property()
   @Description("")
   photo: string;
+
+  @Property()
+  @Description("")
+  price: number;
 }
