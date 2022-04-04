@@ -9,10 +9,11 @@ import {
   Res,
   UseAuth,
 } from "@tsed/common";
-import shortid from "shortid";
 import { AuthMiddleware } from "../../middlewares/auth";
 import { AuthService } from "../../services/auth";
 import { SpaceService } from "../../services/space";
+const shortid = require('shortid');
+ 
 
 @Controller({
   path: "/spaces",
