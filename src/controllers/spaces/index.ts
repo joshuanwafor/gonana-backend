@@ -33,7 +33,7 @@ export class SpacesCtrl {
   @Post("")
   @UseAuth(AuthMiddleware)
   async post(@BodyParams() body: any) {
-    body.code = shortid.characters("0123456789abcdefghijklmnopqrstuvwxyz$@");
+    body.code = shortid.generate();
     body.publisher_id = this.authService.user_id;
     return await this.service.save(body);
   }
