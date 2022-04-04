@@ -32,7 +32,7 @@ export class SpacesCtrl {
   @Post("")
   @UseAuth(AuthMiddleware)
   async post(@BodyParams() body: any) {
-    body.course_code = require("shortid").generate();
+    body.code = shortid.characters("0123456789abcdefghijklmnopqrstuvwxyz$@");
     body.publisher_id = this.authService.user_id;
     return await this.service.save(body);
   }
@@ -41,6 +41,13 @@ export class SpacesCtrl {
   @UseAuth(AuthMiddleware)
   async get(@PathParams("id") id: string) {
     return await this.service.find(id);
+  }
+
+  @Get("/code/:code")
+  @UseAuth(AuthMiddleware)
+  async getByCode(@PathParams("code") code: string) {
+    let res = await this.service.model.findOne({ code: code });
+    return res;
   }
 
   @Put("/:id")
