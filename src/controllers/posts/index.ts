@@ -11,14 +11,15 @@ import {
 } from "@tsed/common";
 import { AuthMiddleware } from "../../middlewares/auth";
 import { AuthService } from "../../services/auth";
-import { ResourceService } from "../../services/resource/resource-service";
+import { PostService } from "../../services/post";
+const shortid = require("shortid");
 
 @Controller({
-  path: "/resources",
+  path: "/posts",
 })
-export class CoursesCtrl {
+export class PostsCtrl {
   constructor(
-    private service: ResourceService,
+    private service: PostService,
     private authService: AuthService
   ) {}
 
@@ -31,6 +32,7 @@ export class CoursesCtrl {
   @Post("")
   @UseAuth(AuthMiddleware)
   async post(@BodyParams() body: any) {
+    body.code = shortid.generate();
     body.publisher_id = this.authService.user_id;
     return await this.service.save(body);
   }

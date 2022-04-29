@@ -1,22 +1,26 @@
-import { BodyParams, Controller, Delete, Get, PathParams, Post, Put } from "@tsed/common";
+import {
+  BodyParams,
+  Controller,
+  Get,
+  PathParams,
+  Post,
+} from "@tsed/common";
 import { NotFound } from "@tsed/exceptions";
-import { UserService } from '../../services/users/user-service';
-import { User } from '../../models/users/user';
+import { UserService } from "../../services/users/user-service";
+import { User } from "../../models/users/user";
 import { FirebaseAuth } from "../../services/firebase/auth";
-import { CreateAccountForm, PaystackService } from '../../services/paystack/submite-bank-info';
-
 
 @Controller({
-  path: "/users"
+  path: "/users",
 })
 export class UsersCtrl {
-  constructor(private userService: UserService, private firebaseU: FirebaseAuth, private paystackService: PaystackService) {
-
-  }
+  constructor(
+    private userService: UserService,
+    private firebaseU: FirebaseAuth
+  ) {}
 
   @Get("/:id")
   async get(@PathParams("id") id: string): Promise<User> {
-
     const user = await this.userService.find(id);
 
     if (user) {
@@ -32,12 +36,10 @@ export class UsersCtrl {
    * @returns {Promise<User>}
    */
   @Post("/")
-  save(
-    @BodyParams() user: User) {
-    user._id = "custom"
+  save(@BodyParams() user: User) {
+    user._id = "custom";
     return this.userService.save(user);
   }
-
 
   /**
    *

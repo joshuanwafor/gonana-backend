@@ -12,13 +12,9 @@ import { NotFound } from "@tsed/exceptions";
 import { UserService } from "../../services/users/user-service";
 import { User } from "../../models/users/user";
 import { FirebaseAuth } from "../../services/firebase/auth";
-import {
-  CreateAccountForm,
-  PaystackService,
-} from "../../services/paystack/submite-bank-info";
+
 import { AuthMiddleware } from "../../middlewares/auth";
 import { AuthService } from "../../services/auth";
-import { TransactionModel } from "../../models/order/order";
 import { JWTService } from "../../services/jsonwebtokens/userToken";
 
 @Controller({
@@ -28,7 +24,6 @@ export class UserCtrl {
   constructor(
     private userService: UserService,
     private firebaseU: FirebaseAuth,
-    private paystackService: PaystackService,
     private authService: AuthService,
     private jwt: JWTService
   ) {}
@@ -47,17 +42,7 @@ export class UserCtrl {
     return await this.userService.save({ fuid: Date.now().toString() });
   }
 
-  @Post("/bank-account")
-  @UseAuth(AuthMiddleware)
-  async updateUserPaystackBankAccount(
-    @BodyParams() body: CreateAccountForm
-  ): Promise<User> {
-    console.log(body, " Form to create for user");
-    return await this.paystackService.addUserSubaccount(
-      body,
-      this.authService.user_id
-    );
-  }
+ 
 
   @Get("/")
   @UseAuth(AuthMiddleware)
