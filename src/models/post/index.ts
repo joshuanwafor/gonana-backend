@@ -1,47 +1,58 @@
-import {Required, Name, Description, Property, CollectionOf} from "@tsed/schema";
+import {
+  Required,
+  Name,
+  Description,
+  Property,
+  CollectionOf,
+} from "@tsed/schema";
 
-import {Model, Ref} from "@tsed/mongoose";
+import { Model, Ref, Schema } from "@tsed/mongoose";
 
+@Schema()
 class Media {
-    status: string;
-    file_type: string;
-    source: string;
-    source_id: string;
-    content_url: string;
-    name: string;
+  @Property()
+  status: string;
+  @Property()
+  file_type: string;
+  @Property()
+  source: string;
+  @Property()
+  source_id: string;
+  @Property()
+  content_url: string;
+  @Property()
+  name: string;
 }
 
 @Model({
-    schemaOptions: {timestamps: true, collection: "posts"},
-    collection: "posts",
+  schemaOptions: { timestamps: true, collection: "posts" },
+  collection: "posts",
 })
 export class PostModel {
-    @Name("id")
-    _id: string;
+  @Name("id")
+  _id: string;
 
-    @Name("created_at")
-    @Property()
-    createdAt: any;
+  @Name("created_at")
+  @Property()
+  createdAt: any;
 
-    @Name("updated_at")
-    @Property()
-    updatedAt: any;
+  @Name("updated_at")
+  @Property()
+  updatedAt: any;
 
-    @Property()
-    @Description("")
-    publisher_id: string;
+  @Property()
+  @Description("")
+  publisher_id: string;
 
-    @Property()
-    body: string;
+  @Property()
+  body: string;
 
-    @Property()
-    @Description("")
-    categories: string[];
+  @Property()
+  @Description("")
+  categories: string[];
 
-    @Property()
-    @Description("")
-    @CollectionOf(Media)
-    media: Media[];
-
+  @Property()
+  @Description("")
+  @CollectionOf(Media)
+  media: Media[];
 }
-
