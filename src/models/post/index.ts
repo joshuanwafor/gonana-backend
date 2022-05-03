@@ -1,5 +1,4 @@
 import {
-  Required,
   Name,
   Description,
   Property,
