@@ -68,7 +68,10 @@ export class User {
 
   @Property()
   fullname: string;
-
+  @Property()
+  first_name: string;
+  @Property()
+  last_name: string;
   @Property()
   bio: string;
 
