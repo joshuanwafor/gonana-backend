@@ -25,4 +25,6 @@ export class RootCtrl {
   async get() {
     return await this.service.query({});
   }
+
+  
 }
