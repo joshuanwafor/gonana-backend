@@ -3,6 +3,7 @@ import {
   Description,
   Property,
   CollectionOf,
+  Default,
 } from "@tsed/schema";
 
 import { Model, Ref, Schema } from "@tsed/mongoose";
@@ -44,6 +45,13 @@ export class PostModel {
   publisher_id: string;
 
   @Property()
+  @Default("post")
+  type: string;
+
+  @Property()
+  name: string;
+
+  @Property()
   body: string;
 
   @Property()
@@ -54,4 +62,8 @@ export class PostModel {
   @Description("")
   @CollectionOf(Media)
   media: Media[];
+
+  @Property()
+  @Default(0)
+  amount: number;
 }
