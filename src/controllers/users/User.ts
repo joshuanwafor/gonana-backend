@@ -16,6 +16,10 @@ import { FirebaseAuth } from "../../services/firebase/auth";
 import { AuthMiddleware } from "../../middlewares/auth";
 import { AuthService } from "../../services/auth";
 import { JWTService } from "../../services/jsonwebtokens/userToken";
+import {
+  CreateAccountForm,
+  PaystackService,
+} from "../../services/paystack/submite-bank-info";
 
 @Controller({
   path: "/user",
@@ -25,7 +29,8 @@ export class UserCtrl {
     private userService: UserService,
     private firebaseU: FirebaseAuth,
     private authService: AuthService,
-    private jwt: JWTService
+    private jwt: JWTService,
+    private paystackService: PaystackService
   ) {}
 
   @Post("/auth")
@@ -37,12 +42,22 @@ export class UserCtrl {
     }
   }
 
+  @Post("/bank-account")
+  @UseAuth(AuthMiddleware)
+  async updateUserPaystackBankAccount(
+    @BodyParams() body: CreateAccountForm
+  ): Promise<User> {
+    console.log(body, " Form to create for user");
+    return await this.paystackService.addUserSubaccount(
+      body,
+      this.authService.user_id
+    );
+  }
+
   @Get("/verify")
   async verifyy() {
     return await this.userService.save({ fuid: Date.now().toString() });
   }
-
- 
 
   @Get("/")
   @UseAuth(AuthMiddleware)
