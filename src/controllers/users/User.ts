@@ -58,6 +58,8 @@ export class UserCtrl {
   async verifyy() {
     return await this.userService.save({ fuid: Date.now().toString() });
   }
+  // ok
+
 
   @Get("/")
   @UseAuth(AuthMiddleware)
