@@ -105,6 +105,9 @@ export class User {
   @Property()
   photo: string;
 
+  @Property()
+  cover: string;
+
   @CollectionOf(PaystackBankIntegrationSchema)
   @Property()
   paystack_bank_integration: PaystackBankIntegrationSchema;
