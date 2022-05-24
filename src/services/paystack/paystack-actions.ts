@@ -5,7 +5,7 @@ const SEC_KEY = "Bearer sk_test_9684e8c5e16ebdf4816bbfaac0c28086971cb6ca"
 export class PaystackActions {
 
     addSubaccount = async (info: any): Promise<any> => {
-
+        console.log(info)
         let response = await axios({
             method: "post",
             url: "https://api.paystack.co/subaccount",
@@ -31,18 +31,17 @@ export class PaystackActions {
     initTransaction = async (data:
         {
             email: string,
-            amount: string,
+            amount: any,
             reference: string,
             subaccount: string,
+            meta?: {[key: string]: any}
         }
     ): Promise<{
         authorization_url: string;
         access_code: string;
         reference: string;
     }> => {
-        // @ts-ignore
-        data.callback_url = "https://finalyc.herokuapp.com/rest/verify-pay"
-
+     
         let response = await axios({
             method: "post",
             url: "https://api.paystack.co/transaction/initialize",
@@ -52,7 +51,7 @@ export class PaystackActions {
             },
             data: JSON.stringify(data)
         });
-
+        //https://core-zane.herokuapp.com/public/hook
         console.log(response);
 
         let initData: {
@@ -83,3 +82,4 @@ export class PaystackActions {
         }
     }
 }
+

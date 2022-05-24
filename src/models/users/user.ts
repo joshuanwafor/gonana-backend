@@ -1,6 +1,16 @@
 import {} from "@tsed/common";
 import { Model, Schema } from "@tsed/mongoose";
-import { Required, Name, Property, CollectionOf } from "@tsed/schema";
+import { Required, Name, Property, CollectionOf, Default } from "@tsed/schema";
+
+@Schema({})
+class Location {
+  @Property()
+  @Default("Point")
+  type: string;
+
+  @Property()
+  coordinates: string[];
+}
 
 @Schema()
 class PaystackBankIntegrationSchema {
@@ -98,4 +108,16 @@ export class User {
   @CollectionOf(PaystackBankIntegrationSchema)
   @Property()
   paystack_bank_integration: PaystackBankIntegrationSchema;
+
+  @Property()
+  country: string;
+
+  @Property()
+  state: string;
+
+  @Property()
+  address: string;
+
+  @Property()
+  location: Location;
 }

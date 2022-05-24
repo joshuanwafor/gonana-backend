@@ -60,7 +60,6 @@ export class UserCtrl {
   }
   // ok
 
-
   @Get("/")
   @UseAuth(AuthMiddleware)
   async get(): Promise<User> {
