@@ -27,6 +27,8 @@ class OrderCollectionItem {
   @Property()
   name: string;
   @Property()
+  photo: string;
+  @Property()
   description: string;
   @Property()
   quantity: number;
