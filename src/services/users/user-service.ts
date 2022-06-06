@@ -10,7 +10,7 @@ export class UserService {
   private eventEmitter: EventEmitterService;
 
   @Inject(User)
-  private User: MongooseModel<User>;
+  public User: MongooseModel<User>;
   $onInit() {}
   async find(id: string): Promise<User> {
     const user = await this.User.findById(id).exec();
