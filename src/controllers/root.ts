@@ -13,7 +13,7 @@ import {
 } from "@tsed/common";
 import { TransactionService } from "../services/transactions";
 import { PostService } from "../services/post";
-import { UserService } from "src/services/users/user-service";
+import { UserService } from "../services/users/user-service";
 
 @Controller({
   path: "/public",
