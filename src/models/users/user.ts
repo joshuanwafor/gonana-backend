@@ -119,7 +119,10 @@ export class User {
   state: string;
 
   @Property()
-  address: string;
+  street: string;
+
+  @Property()
+  city: string;
 
   @Property()
   location: Location;
