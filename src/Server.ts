@@ -13,6 +13,11 @@ import * as cors from "cors";
 
 console.log(__dirname);
 @Configuration({
+  cache: {
+    ttl: 300, // default TTL
+    store: "memory"
+    // options options depending on the choosen storage type
+  },
   eventEmitter: {
     enabled: true,
     wildcard: true,

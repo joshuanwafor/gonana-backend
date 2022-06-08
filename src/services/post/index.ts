@@ -15,9 +15,7 @@ export class PostService {
 
   async save(item: PostModel): Promise<PostModel> {
     const model = new this.model(item);
-
     await model.updateOne(item, { upsert: true });
-
     return model;
   }
 
