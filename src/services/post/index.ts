@@ -7,7 +7,6 @@ import { PostModel } from "../../models/post";
 export class PostService {
   @Inject(PostModel)
   model: MongooseModel<PostModel>;
-
   async find(id: string): Promise<PostModel> {
     const item = await this.model.findById(id).exec();
     return item;
