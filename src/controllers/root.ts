@@ -41,7 +41,7 @@ export class RootCtrl {
   }
 
   @Get("/feed")
-  @UseCache({ ttl: 60000 })
+  // @UseCache({ ttl: 60000 })
   async getFeed() {
     let users = await this.users.User.find({
       paystack_bank_integration: { $ne: undefined },
