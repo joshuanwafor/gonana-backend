@@ -48,7 +48,7 @@ export class RootCtrl {
       photo: { $ne: undefined },
       phone: { $ne: undefined },
     });
-    let products = await this.postService.model.find();
+    let products = await this.postService.model.find({type:"product"});
     let posts = await this.postService.model.find();
     let topics = await this.taxonomyService.model.find({});
     let feed: {
