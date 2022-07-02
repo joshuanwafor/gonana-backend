@@ -16,7 +16,8 @@ async function bootstrap() {
   try {
     init_firebase();
     $log.debug("Start server...");
-    const platform = await PlatformExpress.bootstrap(Server, {});
+    const platform = await PlatformExpress.bootstrap(Server, {port:4444});
+
 
     await platform.listen();
     $log.debug("Server initialized");

@@ -11,8 +11,6 @@ import {
   QueryParams,
   Req,
   Res,
-  UseAuth,
-  UseCache,
 } from "@tsed/common";
 import { TransactionService } from "../services/transactions";
 import { PostService } from "../services/post";
@@ -21,6 +19,14 @@ import { User } from "../models/users/user";
 import { PostModel } from "../models/post";
 import { TaxonomyModel } from "../models/taxonomy/taxonomy";
 import { TaxonomyService } from "../services/taxonomy/taxonomy-service";
+import {
+  Deprecated,
+  Description,
+  Returns,
+  Security,
+  Summary,
+} from "@tsed/schema";
+import { UserFeedSchema } from "../schama/response";
 
 @Controller({
   path: "/public",
@@ -36,19 +42,29 @@ export class RootCtrl {
   ) {}
 
   @Get("/posts")
-  async get() {
+  @Summary("Summary of this route")
+  @Description("Description of this route")
+  @Returns(200, Array).Of(PostModel).Description("Success")
+  @Returns(404, Object)
+  @Returns(500, Object)
+  async get(): Promise<PostModel[]> {
     return await this.postService.query({});
   }
 
   @Get("/feed")
   // @UseCache({ ttl: 60000 })
+  @Summary("Summary of this route")
+  @Description("Description of this route")
+  @Returns(200, UserFeedSchema).Description("Success")
+  @Returns(404, Object)
+  @Returns(500, Object)
   async getFeed() {
     let users = await this.users.User.find({
       paystack_bank_integration: { $ne: undefined },
       photo: { $ne: undefined },
       phone: { $ne: undefined },
     });
-    let products = await this.postService.model.find({type:"product"});
+    let products = await this.postService.model.find({ type: "product" });
     let posts = await this.postService.model.find();
     let topics = await this.taxonomyService.model.find({});
     let feed: {
@@ -63,11 +79,6 @@ export class RootCtrl {
       topics,
     };
     return feed;
-  }
-
-  @Get("/farms")
-  async getFarms() {
-    return await this.users.User.find();
   }
 
   @Post("/hook")

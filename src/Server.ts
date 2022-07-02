@@ -30,7 +30,7 @@ console.log(__dirname);
   mongoose: {
     url:
       process.env.mongoose_url ||
-      "mongodb://127.0.0.1:27017/vspaces",
+      "mongodb://127.0.0.1:27017/gonana",
     connectionOptions: {
       useNewUrlParser: true,
       useUnifiedTopology: true,
@@ -38,8 +38,10 @@ console.log(__dirname);
   },
   swagger: [
     {
-      path: "/api-docs",
-    },
+      path: "/v3/docs",
+      specVersion: "3.0.1",
+      pathPatterns: ["/rest/**"]
+    }
   ],
   debug: false,
   viewsDir: `${__dirname}/../views`,
