@@ -10,7 +10,7 @@ export class PaystackActions {
             method: "post",
             url: "https://api.paystack.co/subaccount",
             headers: {
-                'Authorization': process.env.sk_live_paystack ?? SEC_KEY,
+                'Authorization': SEC_KEY,
                 'Content-Type': 'application/json'
             },
             data: JSON.stringify(info)
@@ -68,7 +68,7 @@ export class PaystackActions {
             method: "get",
             url: `https://api.paystack.co/transaction/verify/${REFERENCE}`,
             headers: {
-                'Authorization': process.env.sk_live_paystack ?? SEC_KEY,
+                'Authorization': SEC_KEY,
                 'Content-Type': 'application/json'
             }
         });
