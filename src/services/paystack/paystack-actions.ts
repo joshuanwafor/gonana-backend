@@ -1,6 +1,6 @@
 import { string } from "@tsed/schema";
 import axios, { AxiosResponse } from "axios";
-const SEC_KEY = "Bearer sk_test_9684e8c5e16ebdf4816bbfaac0c28086971cb6ca"
+const SEC_KEY = "Bearer sk_test_2e1670217f205c4b1182a7c303b8ee5a6b35dd89"
 
 export class PaystackActions {
 
@@ -46,7 +46,7 @@ export class PaystackActions {
             method: "post",
             url: "https://api.paystack.co/transaction/initialize",
             headers: {
-                'Authorization': process.env.sk_live_paystack ?? SEC_KEY,
+                'Authorization': SEC_KEY,
                 'Content-Type': 'application/json'
             },
             data: JSON.stringify(data)
