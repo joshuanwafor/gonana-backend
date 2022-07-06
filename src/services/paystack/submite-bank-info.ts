@@ -5,7 +5,6 @@ import { User } from "../../models/users/user";
 import { Required } from "@tsed/schema";
 import axios from "axios";
 import { PaystackActions } from "./paystack-actions";
-const SEC_KEY = "Bearer sk_test_2e1670217f205c4b1182a7c303b8ee5a6b35dd89";
 
 let paystackActions = new PaystackActions();
 
