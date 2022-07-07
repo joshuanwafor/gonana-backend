@@ -11,26 +11,30 @@ export class UserService {
 
   @Inject(User)
   public User: MongooseModel<User>;
-  $onInit() {}
+  $onInit() { }
   async find(id: string): Promise<User> {
     const user = await this.User.findById(id).exec();
     return user;
   }
-  async save(user: any): Promise<User> {
-    const model = new this.User(user);
 
-    await model.updateOne(user, { upsert: true });
-
-    if (user.id == undefined) {
-      // emit user create event
-      this.eventEmitter.emit("user.created", model);
-    } else {
-      // emit user update event
-      this.eventEmitter.emit("user.updated", model);
+  async create(user: any): Promise<User> {
+    try {
+      const model = this.User.create(user);
+      return model;
+    } catch (error) {
+      throw error;
     }
-
-    return model;
   }
+
+  async update(user_id: string, user: any): Promise<void> {
+    try {
+      this.User.findOneAndUpdate({ _id: user_id }, user, { new: true }).exec();
+    } catch (error) {
+      throw error;
+    }
+  }
+
+
   async query(options = {}): Promise<User[]> {
     return this.User.find(options).exec();
   }

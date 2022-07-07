@@ -1,5 +1,5 @@
 import {} from "@tsed/common";
-import { Model, Schema } from "@tsed/mongoose";
+import { Model, Schema, Unique, Indexed } from "@tsed/mongoose";
 import { Required, Name, Property, CollectionOf, Default } from "@tsed/schema";
 
 @Schema({})
@@ -91,10 +91,14 @@ export class User {
   @Name("fuid")
   @Required()
   @Property()
+  @Unique()
   fuid: string;
 
   @Property()
+  @Unique()
+  @Required()
   email: string;
+
 
   @Property()
   phone: string;

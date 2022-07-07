@@ -19,6 +19,16 @@ export class TaxonomyService {
     return model;
   }
 
+  async update(id: string, data: any): Promise<any> {
+    try {
+      return await this.model.findOneAndUpdate({ _id: id }, data, { new: true });
+    } catch (error) {
+      throw error;
+    }
+  }
+
+
+
   async query(options = {}): Promise<TaxonomyModel[]> {
     return this.model.find(options).exec();
   }

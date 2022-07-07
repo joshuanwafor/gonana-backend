@@ -34,14 +34,13 @@ export class FirebaseAuth {
 
         if (user == null || user == undefined) {
             try {
-               let newUser = await this.userService.save({
+                let newUser = await this.userService.create({
                     email: decoded.email,
                     fuid: decoded.uid,
                     fullname: "Default Fullname"
                 });
 
                 return this.generateUserToken(newUser);
-
             } catch (e) {
                 console.log(e);
                 throw e;

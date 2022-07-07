@@ -31,7 +31,7 @@ export class UserCtrl {
     private authService: AuthService,
     private jwt: JWTService,
     private paystackService: PaystackService
-  ) {}
+  ) { }
 
   @Post("/auth")
   async auth(@BodyParams() body: { token: string }): Promise<any> {
@@ -54,12 +54,6 @@ export class UserCtrl {
     );
   }
 
-  @Get("/verify")
-  async verifyy() {
-    return await this.userService.save({ fuid: Date.now().toString() });
-  }
-  // ok
-
   @Get("/")
   @UseAuth(AuthMiddleware)
   async get(): Promise<User> {
@@ -74,10 +68,12 @@ export class UserCtrl {
 
   @Put("/")
   @UseAuth(AuthMiddleware)
-  async update(@BodyParams() body: any): Promise<User> {
-    body.id = this.authService.user_id;
-    body._id = this.authService.user_id;
-    console.log(body, " to update");
-    return this.userService.save(body);
+  async update(@BodyParams() body: any) {
+    try {
+      this.userService.update(this.authService.user_id, body);
+      return "Updated"
+    } catch (error) {
+      throw error;
+    }
   }
 }
