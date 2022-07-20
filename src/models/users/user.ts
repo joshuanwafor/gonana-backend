@@ -1,4 +1,4 @@
-import {} from "@tsed/common";
+import { } from "@tsed/common";
 import { Model, Schema, Unique, Indexed } from "@tsed/mongoose";
 import { Required, Name, Property, CollectionOf, Default } from "@tsed/schema";
 
@@ -84,6 +84,9 @@ export class User {
   last_name: string;
   @Property()
   bio: string;
+
+  @Property()
+  messaging_token: string;
 
   @Property()
   verified: boolean;

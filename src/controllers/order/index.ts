@@ -21,7 +21,7 @@ export class OrderCtrl {
   constructor(
     private service: OrderService,
     private authService: AuthService
-  ) {}
+  ) { }
 
   @Get("")
   @UseAuth(AuthMiddleware)
@@ -53,7 +53,7 @@ export class OrderCtrl {
     try {
       let order = await this.service.generatePaystackPaymentTransaction(itemID);
       return order.paystack_trans.authorization_url;
-    } catch (error) {}
+    } catch (error) { }
   }
 
   @Get("/:itemID/received")
@@ -61,11 +61,10 @@ export class OrderCtrl {
   async received(@PathParams("itemID") itemID: string) {
     try {
       // @ts-ignore
-      return await this.service.save({
-        _id: itemID,
+      return await this.service.update(itemID, {
         status: "completed",
       });
-    } catch (error) {}
+    } catch (error) { }
   }
 
   @Get("/:itemID/delivered")
@@ -73,11 +72,10 @@ export class OrderCtrl {
   async delivered(@PathParams("itemID") itemID: string) {
     try {
       // @ts-ignore
-      return await this.service.save({
-        _id: itemID,
+      return await this.service.update(itemID, {
         provider_status: "completed",
       });
-    } catch (error) {}
+    } catch (error) { }
   }
 
   @Get("/:itemID")

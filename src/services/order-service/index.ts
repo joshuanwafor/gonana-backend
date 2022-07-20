@@ -5,6 +5,7 @@ import { OrderModel } from "../../models/order/order";
 import { UserService } from "../users/user-service";
 import { PaystackActions } from "../paystack/paystack-actions";
 import { PostService } from "../post";
+import { NotificationService } from "../firebase/notifications";
 
 const paystackActions = new PaystackActions();
 
@@ -18,6 +19,9 @@ export class OrderService {
 
   @Inject(PostService)
   postService: PostService;
+
+  @Inject(NotificationService)
+  notificationService: NotificationService;
 
   async find(id: string): Promise<OrderModel> {
     const item = await this.model.findById(id).exec();
@@ -35,8 +39,32 @@ export class OrderService {
 
   async save(item: OrderModel): Promise<OrderModel> {
     const model = new this.model(item);
-    await model.updateOne(item, { upsert: true });
-    return model;
+    try {
+      await model.updateOne(item, { upsert: true });
+
+      this.notificationService.sendNotification(model.publisher_id, {
+        body: "Your order was placed successfully. Proceed to making payment with either fiat or crypto",
+        title: "🔔 New order"
+      });
+
+      this.notificationService.sendNotification(model.provider_id, {
+        body: "An order was place to your store which sums up to ₦" + item.total,
+        title: "🔔 New order "
+      });
+
+
+      return model;
+    } catch (err) {
+      throw err;
+    }
+  }
+
+  async update(order_id: string, order: OrderModel) {
+    try {
+      return this.model.findOneAndUpdate({ _id: order_id }, order, { new: true }).exec();
+    } catch (err) {
+      throw err;
+    }
   }
 
   async query(options = {}): Promise<OrderModel[]> {
