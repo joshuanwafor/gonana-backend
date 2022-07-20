@@ -2,7 +2,6 @@ import { Service } from "@tsed/di";
 import firebase from "firebase-admin"
 import { UserService } from "../users/user-service";
 
-
 const messaging = firebase.messaging();
 const historyCollection = firebase.firestore().collection("user-history");
 
@@ -16,17 +15,18 @@ export class NotificationService {
         body: string,
     }) {
         let user = await this.userService.find(user_id);
-
+        if (user.messaging_token == undefined) { return; }
         messaging.sendToDevice(
             user.messaging_token, { notification: message }
         );
         this.addToHistory(user_id, message);
     }
 
-    addToHistory(user_id:string, message: any) {
+    addToHistory(user_id: string, message: any) {
         historyCollection.add({
             created_on: Date.now(),
-            data: message
+            data: message,
+            user_id: user_id
         })
     }
 
