@@ -98,8 +98,6 @@ export class OrderService {
       });
 
       // @ts-ignore
-      console.log(paystack_trans_det.data, "after creating det");
-      // @ts-ignore
       await this.save(
         // @ts-ignore
         { _id: order_id, paystack_trans: paystack_trans_det.data }

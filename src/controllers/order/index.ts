@@ -10,6 +10,8 @@ import {
   Res,
   UseAuth,
 } from "@tsed/common";
+import { Returns, } from "@tsed/schema"
+import { OrderModel } from "../../models/order/order";
 import { AuthMiddleware } from "../../middlewares/auth";
 import { AuthService } from "../../services/auth";
 import { OrderService } from "../../services/order-service";
@@ -22,10 +24,11 @@ export class OrderCtrl {
     private service: OrderService,
     private authService: AuthService
   ) { }
-
+  alendarModel
   @Get("")
+  @Returns(200, OrderModel)
   @UseAuth(AuthMiddleware)
-  async getDefault() {
+  async getDefault(): Promise<OrderModel[]> {
     return await this.service.model.find({
       $or: [
         { provider_id: this.authService.user_id },
