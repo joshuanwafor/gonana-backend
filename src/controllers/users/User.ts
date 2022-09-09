@@ -20,6 +20,7 @@ import {
   CreateAccountForm,
   PaystackService,
 } from "../../services/paystack/submite-bank-info";
+import { WebAuth } from "../../services/webauth/auth";
 
 @Controller({
   path: "/user",
@@ -28,6 +29,7 @@ export class UserCtrl {
   constructor(
     private userService: UserService,
     private firebaseU: FirebaseAuth,
+    private webauthService: WebAuth,
     private authService: AuthService,
     private jwt: JWTService,
     private paystackService: PaystackService
@@ -37,6 +39,15 @@ export class UserCtrl {
   async auth(@BodyParams() body: { token: string }): Promise<any> {
     try {
       return await this.firebaseU.auth(body.token);
+    } catch (e) {
+      throw e;
+    }
+  }
+
+  @Post("/webauth")
+  async webauth(@BodyParams() body: { token: string }): Promise<any> {
+    try {
+      return await this.webauthService.auth(body.token);
     } catch (e) {
       throw e;
     }
