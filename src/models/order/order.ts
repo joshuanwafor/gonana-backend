@@ -64,6 +64,10 @@ export class OrderModel {
 
   @Property()
   @Description("")
+  tracking_id: string;
+
+  @Property()
+  @Description("")
   provider_id: string;
 
   @Property()
@@ -80,6 +84,14 @@ export class OrderModel {
   @Enum(["pending", "completed"])
   @Default("pending")
   payment_status?: string;
+
+  @Property()
+  @Description("")
+  delivery_method: string;
+
+  @Property()
+  @Description("")
+  payment_method: string;
 
   @Property()
   @CollectionOf(OrderCollectionItem)

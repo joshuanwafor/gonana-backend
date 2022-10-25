@@ -24,6 +24,14 @@ class Media {
   name: string;
 }
 
+class GeoLocation {
+  @Property()
+  type: string;
+  @CollectionOf(Number)
+  @Property()
+  coordinates: number[];
+}
+
 @Model({
   schemaOptions: { timestamps: true, collection: "posts" },
   collection: "posts",
@@ -66,4 +74,11 @@ export class PostModel {
   @Property()
   @Default(0)
   amount: number;
+
+  @Property()
+  @CollectionOf(GeoLocation)
+  location: {
+    type: "Point";
+    coordinates: [-73.856077, 40.848447];
+  };
 }

@@ -39,7 +39,6 @@ export class FirebaseAuth {
                     fuid: decoded.uid,
                     fullname: "Default Fullname"
                 });
-
                 return this.generateUserToken(newUser);
             } catch (e) {
                 console.log(e);

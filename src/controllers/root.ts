@@ -19,13 +19,7 @@ import { User } from "../models/users/user";
 import { PostModel } from "../models/post";
 import { TaxonomyModel } from "../models/taxonomy/taxonomy";
 import { TaxonomyService } from "../services/taxonomy/taxonomy-service";
-import {
-  Deprecated,
-  Description,
-  Returns,
-  Security,
-  Summary,
-} from "@tsed/schema";
+import { Description, Returns, Summary } from "@tsed/schema";
 import { UserFeedSchema } from "../schama/response";
 
 @Controller({
@@ -45,7 +39,6 @@ export class RootCtrl {
   @Summary("Summary of this route")
   @Description("Description of this route")
   @Returns(200, Array).Of(PostModel).Description("Success")
-  @Returns(404, Object)
   @Returns(500, Object)
   async get(): Promise<PostModel[]> {
     return await this.postService.query({});
@@ -56,7 +49,6 @@ export class RootCtrl {
   @Summary("Summary of this route")
   @Description("Description of this route")
   @Returns(200, UserFeedSchema).Description("Success")
-  @Returns(404, Object)
   @Returns(500, Object)
   async getFeed() {
     let users = await this.users.User.find({
@@ -66,6 +58,57 @@ export class RootCtrl {
     });
     let products = await this.postService.model.find({ type: "product" });
     let posts = await this.postService.model.find();
+    let topics = await this.taxonomyService.model.find({});
+    let feed: {
+      users: User[];
+      products: PostModel[];
+      posts: PostModel[];
+      topics: TaxonomyModel[];
+    } = {
+      users,
+      posts,
+      products,
+      topics,
+    };
+    return feed;
+  }
+
+  @Get("/feed-within-location")
+  // @UseCache({ ttl: 60000 })
+  @Summary("Summary of this route")
+  @Description("Description of this route")
+  @Returns(200, UserFeedSchema).Description("Success")
+  @Returns(500, Object)
+  async getFeedWithinLocation(
+    @QueryParams("long") long: string,
+    @QueryParams("lat") lat: string
+  ) {
+    let locationQuery = {
+      $geometry: {
+        type: "Point",
+        coordinates: [-73.9667, 40.78],
+      },
+      $minDistance: 10,
+      $maxDistance: 5000,
+    };
+
+    let users = await this.users.User.find({
+      paystack_bank_integration: { $ne: undefined },
+      photo: { $ne: undefined },
+      phone: { $ne: undefined },
+    });
+    let products = await this.postService.model.find({
+      location: {
+        $nearSphere: locationQuery,
+      },
+      type: "product",
+    });
+    let posts = await this.postService.model.find({
+      location: {
+        $nearSphere: locationQuery,
+      },
+      type: "post",
+    });
     let topics = await this.taxonomyService.model.find({});
     let feed: {
       users: User[];
