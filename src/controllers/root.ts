@@ -47,7 +47,6 @@ export class RootCtrl {
   @Get("/profile-feed")
   @Returns(200, UserFeedSchema).Description("Success")
   async getUserFeed(@QueryParams("id") id: string) {
-    let user = await this.users.User.findOne({_id: id});
     let all = await this.postService.model.find({});
     let products = await this.postService.model.find({
       type: "product",
@@ -59,7 +58,6 @@ export class RootCtrl {
     });
 
     return {
-      user,
       all,
       posts,
       products,
