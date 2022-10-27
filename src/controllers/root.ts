@@ -47,7 +47,7 @@ export class RootCtrl {
   @Get("/profile-feed")
   @Returns(200, UserFeedSchema).Description("Success")
   async getUserFeed(@QueryParams("id") id: string) {
-    let all = await this.postService.model.find({});
+    let all = await this.postService.model.find();
     let products = await this.postService.model.find({
       type: "product",
       publisher_id: id,
