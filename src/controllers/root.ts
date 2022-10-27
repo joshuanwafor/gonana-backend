@@ -44,6 +44,41 @@ export class RootCtrl {
     return await this.postService.query({});
   }
 
+  @Get("/profile-feed")
+  @Returns(200, UserFeedSchema).Description("Success")
+  async getUserFeed(@QueryParams("id") id: string) {
+    let user = await this.users.User.findById(id);
+    let all = await this.postService.model.find({});
+    let products = await this.postService.model.find({
+      type: "product",
+      publisher_id: id,
+    });
+    let posts = await this.postService.model.find({
+      type: "post",
+      publisher_id: id,
+    });
+
+    return {
+      user,
+      all,
+      posts,
+      products,
+    };
+  }
+
+  @Get("/category-feed")
+  @Returns(200, UserFeedSchema).Description("Success")
+  async getCategoryFeed(@QueryParams("id") id: string) {
+    let products = await this.postService.model.find({
+      type: "product",
+      publisher_id: id,
+      categories: id,
+    });
+    return {
+      products,
+    };
+  }
+
   @Get("/feed")
   // @UseCache({ ttl: 60000 })
   @Summary("Summary of this route")
