@@ -1,13 +1,9 @@
 import {
-  BodyParams,
   Controller,
-  Delete,
   Get,
   Inject,
-  PathParams,
   PlatformCache,
   Post,
-  Put,
   QueryParams,
   Req,
   Res,

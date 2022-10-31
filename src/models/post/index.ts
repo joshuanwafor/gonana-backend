@@ -64,6 +64,7 @@ export class PostModel {
 
   @Property()
   @Description("")
+  @CollectionOf(String)
   categories: string[];
 
   @Property()
@@ -77,8 +78,5 @@ export class PostModel {
 
   @Property()
   @CollectionOf(GeoLocation)
-  location: {
-    type: "Point";
-    coordinates: [-73.856077, 40.848447];
-  };
+  location: any
 }
