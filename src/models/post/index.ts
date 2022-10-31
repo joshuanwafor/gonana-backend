@@ -62,6 +62,9 @@ export class PostModel {
   @Property()
   body: string;
 
+   @Property()
+  category: string;
+
   @Property()
   @Description("")
   @CollectionOf(String)
