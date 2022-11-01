@@ -10,7 +10,7 @@ import {
   Res,
   UseAuth,
 } from "@tsed/common";
-import { Returns, } from "@tsed/schema"
+import { Returns } from "@tsed/schema";
 import { OrderModel } from "../../models/order/order";
 import { AuthMiddleware } from "../../middlewares/auth";
 import { AuthService } from "../../services/auth";
@@ -23,8 +23,8 @@ export class OrderCtrl {
   constructor(
     private service: OrderService,
     private authService: AuthService
-  ) { }
-  alendarModel
+  ) {}
+  alendarModel;
   @Get("")
   @Returns(200, OrderModel)
   @UseAuth(AuthMiddleware)
@@ -44,6 +44,15 @@ export class OrderCtrl {
     return await this.service.save(body);
   }
 
+  @Put("/:itemID")
+  @UseAuth(AuthMiddleware)
+  async updateOrder(
+    @BodyParams() body: any,
+    @PathParams("itemID") itemID: string
+  ) {
+    return await this.service.update(itemID, body);
+  }
+
   @Delete("/:itemID")
   @UseAuth(AuthMiddleware)
   async deleteOrder(@PathParams("itemID") itemID: string) {
@@ -56,7 +65,7 @@ export class OrderCtrl {
     try {
       let order = await this.service.generatePaystackPaymentTransaction(itemID);
       return order.paystack_trans.authorization_url;
-    } catch (error) { }
+    } catch (error) {}
   }
 
   @Get("/:itemID/received")
@@ -67,7 +76,7 @@ export class OrderCtrl {
       return await this.service.update(itemID, {
         status: "completed",
       });
-    } catch (error) { }
+    } catch (error) {}
   }
 
   @Get("/:itemID/delivered")
@@ -78,7 +87,7 @@ export class OrderCtrl {
       return await this.service.update(itemID, {
         provider_status: "completed",
       });
-    } catch (error) { }
+    } catch (error) {}
   }
 
   @Get("/:itemID")

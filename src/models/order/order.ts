@@ -68,6 +68,10 @@ export class OrderModel {
 
   @Property()
   @Description("")
+  agent_id: string;
+
+  @Property()
+  @Description("")
   provider_id: string;
 
   @Property()

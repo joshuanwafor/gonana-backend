@@ -33,7 +33,7 @@ export class UserCtrl {
     private authService: AuthService,
     private jwt: JWTService,
     private paystackService: PaystackService
-  ) { }
+  ) {}
 
   @Post("/auth")
   async auth(@BodyParams() body: { token: string }): Promise<any> {
@@ -82,7 +82,7 @@ export class UserCtrl {
   async update(@BodyParams() body: any) {
     try {
       this.userService.update(this.authService.user_id, body);
-      return "Updated"
+      return "Updated";
     } catch (error) {
       throw error;
     }
