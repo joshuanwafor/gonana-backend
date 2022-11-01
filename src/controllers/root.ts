@@ -165,7 +165,7 @@ export class RootCtrl {
   }
 
   @Post("/hook")
-  async hook(@Res() res: Res, @Req() req: Req, @QueryParams() query: any) {
+  async hook(@Res() res: Res, @Req() req: Req) {
     var body: any = req.body;
 
     console.log("in hook", body);
