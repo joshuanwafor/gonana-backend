@@ -17,6 +17,8 @@ import { TaxonomyModel } from "../models/taxonomy/taxonomy";
 import { TaxonomyService } from "../services/taxonomy/taxonomy-service";
 import { Description, Returns, Summary } from "@tsed/schema";
 import { UserFeedSchema } from "../schama/response";
+import { OrderModel } from "../models/order/order";
+import { OrderService } from "../services/order-service";
 
 @Controller({
   path: "/public",
@@ -27,6 +29,7 @@ export class RootCtrl {
   constructor(
     private postService: PostService,
     private transactionService: TransactionService,
+    private orderService: OrderService,
     private users: UserService,
     private taxonomyService: TaxonomyService
   ) {}
@@ -40,10 +43,19 @@ export class RootCtrl {
     return await this.postService.query({});
   }
 
+  @Get("/open-orders")
+  @Summary("Summary of this route")
+  @Description("Description of this route")
+  @Returns(200, Array).Of(OrderModel).Description("Success")
+  @Returns(500, Object)
+  async getOpenOrders(): Promise<OrderModel[]> {
+    return await this.orderService.query({ tracking_id: null });
+  }
+
   @Get("/profile-feed")
   @Returns(200, UserFeedSchema).Description("Success")
   async getUserFeed(@QueryParams("id") id: string) {
-    let all = await this.postService.model.find({  publisher_id: id,});
+    let all = await this.postService.model.find({ publisher_id: id });
     let products = await this.postService.model.find({
       type: "product",
       publisher_id: id,
